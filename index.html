@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PET STAR ★ Интерактивная презентация и сравнение дизайнов корма</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Nunito & Rubik for rounded friendly pet-food typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            limePack: {
+              light: '#E3F1BE',
+              DEFAULT: '#B8D478',
+              vibrant: '#94BD46',
+              dark: '#6C8E2B'
+            },
+            spacePurple: {
+              light: '#7B61B3',
+              DEFAULT: '#594189',
+              dark: '#3E2A69',
+              deep: '#281A47'
+            },
+            lavenderBlock: {
+              light: '#B996C7',
+              DEFAULT: '#9B72AA',
+              dark: '#7A5289'
+            },
+            milkWhite: '#F8FAF2',
+            salmonCoral: {
+              light: '#FF9E7D',
+              DEFAULT: '#F27D52',
+              dark: '#D95B2E'
+            },
+            starYellow: {
+              light: '#FFE799',
+              DEFAULT: '#FFD154',
+              dark: '#F2B21B'
+            }
+          },
+          fontFamily: {
+            display: ['Nunito', 'sans-serif'],
+            sans: ['Rubik', 'sans-serif']
+          },
+          boxShadow: {
+            'cartoon': '0 6px 0 0 #3E2A69',
+            'cartoon-sm': '0 4px 0 0 #3E2A69',
+            'cartoon-lg': '0 10px 0 0 #3E2A69',
+            'cartoon-lime': '0 6px 0 0 #6C8E2B',
+            'glow': '0 0 25px rgba(184, 212, 120, 0.6)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F8FAF2;
+      color: #3E2A69;
+      font-family: 'Rubik', sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* Cosmic subtle pattern background */
+    .cosmic-bg {
+      background-color: #F8FAF2;
+      background-image: 
+        radial-gradient(circle at 12% 18%, rgba(184, 212, 120, 0.28) 0%, transparent 25%),
+        radial-gradient(circle at 88% 12%, rgba(89, 65, 137, 0.14) 0%, transparent 25%),
+        radial-gradient(circle at 80% 75%, rgba(242, 125, 82, 0.12) 0%, transparent 30%),
+        radial-gradient(circle at 20% 85%, rgba(184, 212, 120, 0.25) 0%, transparent 28%);
+    }
+
+    /* Floating animation for stars and planets */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(4deg); }
+    }
+    @keyframes pulseStar {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.22); opacity: 1; }
+    }
+    @keyframes hotspotPing {
+      0% { transform: scale(1); opacity: 0.85; }
+      75%, 100% { transform: scale(2.1); opacity: 0; }
+    }
+
+    .animate-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+      animation: floatSlow 6s ease-in-out 1.5s infinite;
+    }
+    .animate-star {
+      animation: pulseStar 3s ease-in-out infinite;
+    }
+    .hotspot-ring::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 9999px;
+      border: 3px solid #FFD154;
+      animation: hotspotPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    /* Custom Range Slider */
+    input[type=range].pet-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    input[type=range].pet-slider::-webkit-slider-runnable-track {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #94BD46 0%, #594189 100%);
+      border: 2px solid #3E2A69;
+    }
+    input[type=range].pet-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #FFD154;
+      border: 3px solid #3E2A69;
+      box-shadow: 0 3px 0 #3E2A69;
+      margin-top: -10px;
+      transition: transform 0.15s ease;
+    }
+    input[type=range].pet-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.12);
+    }
+
+    /* Before/After Image Comparison Container */
+    .compare-stage {
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-y;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F8FAF2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #B8D478;
+      border-radius: 9999px;
+      border: 2px solid #3E2A69;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94BD46;
+    }
+  </style>
+</head>
+<body class="cosmic-bg min-h-screen selection:bg-limePack selection:text-spacePurple-dark">
+
+  <!-- ======================= STICKY NAVIGATION HEADER ======================= -->
+  <header class="sticky top-0 z-50 bg-milkWhite/95 backdrop-blur-md border-b-4 border-spacePurple-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      
+      <!-- Brand Logo -->
+      <a href="#top" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-12 h-12 rounded-2xl bg-spacePurple border-2 border-spacePurple-dark shadow-cartoon-sm flex items-center justify-center relative overflow-hidden group-hover:bg-limePack transition-colors">
+          <!-- Vector Star Icon -->
+          <svg class="w-8 h-8 text-starYellow group-hover:text-spacePurple-dark transition-colors animate-star" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" stroke="#3E2A69" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-display font-black text-2xl sm:text-3xl tracking-tight text-spacePurple-dark">PET STAR</span>
+            <span class="px-2 py-0.5 text-xs font-extrabold uppercase rounded-full bg-limePack border-2 border-spacePurple-dark text-spacePurple-dark">17 Концептов</span>
+          </div>
+          <p class="text-xs font-medium text-spacePurple hidden sm:block">Космический корм для кошек и собак • Презентация упаковки</p>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-2 bg-limePack/30 p-1.5 rounded-2xl border-2 border-spacePurple-dark">
+        <a href="#section-compare" class="nav-pill px-3.5 py-2 rounded-xl text-sm font-bold text-spacePurple-dark bg-starYellow border-2 border-spacePurple-dark shadow-cartoon-sm transition-all flex items-center gap-1.5">
+          <span>⚖️</span> Ползунок сравнения
+        </a>
+        <a href="#section-infographics" class="nav-pill px-3.5 py-2 rounded-xl text-sm font-bold text-spacePurple-dark hover:bg-white/80 transition-all flex items-center gap-1.5">
+          <span>🧬</span> Инфографика и состав
+        </a>
+        <a href="#section-gallery" class="nav-pill px-3.5 py-2 rounded-xl text-sm font-bold text-spacePurple-dark hover:bg-white/80 transition-all flex items-center gap-1.5">
+          <span>📦</span> Все 17 дизайнов
+        </a>
+        <a href="#section-anatomy" class="nav-pill px-3.5 py-2 rounded-xl text-sm font-bold text-spacePurple-dark hover:bg-white/80 transition-all flex items-center gap-1.5">
+          <span>🔍</span> Анатомия пачки
+        </a>
+      </nav>
+
+      <!-- Presentation Mode Toggle / Quick Action -->
+      <div class="flex items-center gap-2">
+        <button id="randomPairBtn" onclick="pickRandomComparison()" class="px-3.5 py-2.5 rounded-xl bg-salmonCoral hover:bg-salmonCoral-dark text-white font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark shadow-cartoon-sm active:translate-y-0.5 transition-all flex items-center gap-1.5">
+          <span>🎲</span> <span class="hidden sm:inline">Случайная пара</span><span class="sm:hidden">Пара</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Quick Scroll Bar -->
+    <div class="lg:hidden flex items-center gap-2 overflow-x-auto px-4 py-2 bg-limePack-light/60 border-t-2 border-spacePurple-dark text-xs font-bold whitespace-nowrap">
+      <a href="#section-compare" class="px-3 py-1.5 rounded-lg bg-starYellow border border-spacePurple-dark text-spacePurple-dark">⚖️ Ползунок сравнения</a>
+      <a href="#section-infographics" class="px-3 py-1.5 rounded-lg bg-white border border-spacePurple-dark text-spacePurple-dark">🧬 Инфографика</a>
+      <a href="#section-gallery" class="px-3 py-1.5 rounded-lg bg-white border border-spacePurple-dark text-spacePurple-dark">📦 Все 17 пачек</a>
+      <a href="#section-anatomy" class="px-3 py-1.5 rounded-lg bg-white border border-spacePurple-dark text-spacePurple-dark">🔍 Анатомия</a>
+    </div>
+  </header>
+
+  <!-- ======================= HERO BANNER ======================= -->
+  <section id="top" class="relative pt-8 pb-10 sm:py-12 overflow-hidden border-b-4 border-spacePurple-dark bg-gradient-to-b from-limePack/40 via-milkWhite to-milkWhite">
+    <!-- Decorative floating space SVG elements -->
+    <svg class="hidden md:block absolute top-8 left-10 w-16 h-16 text-starYellow animate-float pointer-events-none" viewBox="0 0 64 64" fill="none">
+      <path d="M32 6L37 25L56 30L37 35L32 54L27 35L8 30L27 25L32 6Z" fill="#FFD154" stroke="#3E2A69" stroke-width="3"/>
+    </svg>
+    <svg class="hidden md:block absolute top-14 right-12 w-24 h-24 animate-float-delayed pointer-events-none" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="24" fill="#F27D52" stroke="#3E2A69" stroke-width="4"/>
+      <ellipse cx="50" cy="50" rx="44" ry="12" transform="rotate(-20 50 50)" stroke="#3E2A69" stroke-width="4" fill="none"/>
+      <circle cx="42" cy="42" r="4" fill="#FFE799"/>
+    </svg>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-spacePurple rounded-3xl p-6 sm:p-10 border-4 border-spacePurple-dark shadow-cartoon-lg text-milkWhite relative overflow-hidden">
+        <!-- Decorative background circles inside hero card -->
+        <div class="absolute -right-16 -bottom-16 w-72 h-72 rounded-full bg-limePack/20 pointer-events-none"></div>
+        <div class="absolute right-1/3 -top-12 w-40 h-40 rounded-full bg-salmonCoral/20 pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+          <!-- Left column: Presentation Intro -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-limePack text-spacePurple-dark font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark shadow-cartoon-sm">
+              <span>🚀 ДИЗАЙН-СИСТЕМА УПАКОВКИ</span>
+              <span>•</span>
+              <span>PILL BAGS • CUTCIN WEIGHT • NOTH FREE</span>
+            </div>
+
+            <h1 class="font-display font-black text-3xl sm:text-5xl lg:text-6xl leading-tight">
+              Космический корм <span class="text-limePack underline decoration-starYellow decoration-wavy decoration-4 underline-offset-8">PET STAR</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-milkWhite/90 max-w-2xl leading-relaxed">
+              Интерактивная презентация <strong>17 концептов дизайна упаковки</strong> для кошек и собак, включая новую серию <span class="px-2 py-0.5 rounded-lg bg-lavenderBlock text-white font-bold">Split Color-Block (#11–#17)</span> с сиреневым подвалом и макро-маскотами в фасовках <strong class="text-starYellow">2 кг</strong> и <strong class="text-limePack">10 кг</strong>.
+            </p>
+
+            <!-- Key Brand Badges (from the top & bottom of the bag) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              <div class="bg-spacePurple-dark/80 border-2 border-limePack/60 rounded-2xl p-3 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-limePack text-spacePurple-dark flex items-center justify-center font-black text-lg shrink-0">🌿</div>
+                <div>
+                  <div class="text-xs text-limePack font-bold uppercase">Формула</div>
+                  <div class="font-display font-extrabold text-sm">Без ГМО</div>
+                </div>
+              </div>
+              <div class="bg-spacePurple-dark/80 border-2 border-limePack/60 rounded-2xl p-3 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-salmonCoral text-white flex items-center justify-center font-black text-lg shrink-0">🐟</div>
+                <div>
+                  <div class="text-xs text-salmonCoral-light font-bold uppercase">Кошкам</div>
+                  <div class="font-display font-extrabold text-sm">Лосось</div>
+                </div>
+              </div>
+              <div class="bg-spacePurple-dark/80 border-2 border-limePack/60 rounded-2xl p-3 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-starYellow text-spacePurple-dark flex items-center justify-center font-black text-lg shrink-0">🐑</div>
+                <div>
+                  <div class="text-xs text-starYellow font-bold uppercase">Собакам</div>
+                  <div class="font-display font-extrabold text-sm">Ягненок</div>
+                </div>
+              </div>
+              <div class="bg-spacePurple-dark/80 border-2 border-limePack/60 rounded-2xl p-3 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white text-spacePurple-dark flex items-center justify-center font-black text-lg shrink-0">⚖️</div>
+                <div>
+                  <div class="text-xs text-limePack font-bold uppercase">Фасовка</div>
+                  <div class="font-display font-extrabold text-sm">2 кг и 10 кг</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column: Mini Fan Preview of Packs -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            <div class="relative w-full max-w-md h-64 sm:h-72 flex items-center justify-center">
+              <!-- Left tilted card -->
+              <div onclick="setComparisonPair(11, 14); scrollToSection('section-compare')" class="cursor-pointer w-40 sm:w-48 h-52 sm:h-60 rounded-2xl bg-white border-4 border-spacePurple-dark shadow-cartoon overflow-hidden transform -rotate-12 -translate-x-12 hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-300">
+                <img src="Gemini_Generated_Image_fn7lg7fn7lg7fn7l.jpg" alt="Кот Макро Белый верх #11" class="w-full h-full object-cover scale-125" />
+              </div>
+              <!-- Center main card -->
+              <div onclick="setComparisonPair(12, 15); scrollToSection('section-compare')" class="cursor-pointer w-44 sm:w-52 h-56 sm:h-64 rounded-2xl bg-white border-4 border-spacePurple-dark shadow-cartoon-lg overflow-hidden z-20 transform hover:scale-105 transition-all duration-300">
+                <img src="Gemini_Generated_Image_sfy4k6sfy4k6sfy4.jpg" alt="Пёс с Лапками #12" class="w-full h-full object-cover scale-125" />
+              </div>
+              <!-- Right tilted card -->
+              <div onclick="setComparisonPair(3, 4); scrollToSection('section-compare')" class="cursor-pointer w-40 sm:w-48 h-52 sm:h-60 rounded-2xl bg-white border-4 border-spacePurple-dark shadow-cartoon overflow-hidden transform rotate-12 translate-x-12 hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-300">
+                <img src="Gemini_Generated_Image_ope8bfope8bfope8.jpg" alt="Кот в Ракете #3" class="w-full h-full object-cover scale-125" />
+              </div>
+            </div>
+            <p class="text-xs text-limePack font-bold mt-2 flex items-center gap-1.5">
+              <span>👇</span> Тяните ползунок ниже, чтобы сравнить любые 2 из 17 пачек вживую!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 1. INTERACTIVE COMPARISON SLIDER SECTION ======================= -->
+  <section id="section-compare" class="py-12 sm:py-16 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-starYellow border-2 border-spacePurple-dark text-spacePurple-dark font-extrabold text-xs uppercase mb-2 shadow-cartoon-sm">
+            <span>★ Главный инструмент</span>
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-4xl text-spacePurple-dark">
+            Ползунок сравнения дизайнов и состава
+          </h2>
+          <p class="text-spacePurple font-medium mt-1">
+            Перетаскивайте шторку влево-вправо прямо по пачке или выбирайте готовые пары для анализа деталей, цвета и пищевого профиля.
+          </p>
+        </div>
+
+        <!-- View Mode Controls: Curtain vs Side-by-Side & Zoom Toggle -->
+        <div class="flex flex-wrap items-center gap-2 self-start md:self-end">
+          <div class="inline-flex bg-white p-1 rounded-2xl border-2 border-spacePurple-dark shadow-cartoon-sm">
+            <button id="modeCurtainBtn" onclick="setCompareMode('curtain')" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-spacePurple text-white transition-all">
+              🌗 Шторка (Before/After)
+            </button>
+            <button id="modeSideBtn" onclick="setCompareMode('side')" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold text-spacePurple-dark hover:bg-limePack/30 transition-all">
+              ♊ Рядом (Бок-о-бок)
+            </button>
+          </div>
+
+          <button id="zoomPackBtn" onclick="togglePackZoom()" class="px-3.5 py-2.5 rounded-2xl bg-limePack hover:bg-limePack-vibrant text-spacePurple-dark font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark shadow-cartoon-sm transition-all flex items-center gap-1.5">
+            <span id="zoomIcon">🔍</span> <span id="zoomText">Крупный план пачки</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Fast Preset Pairs (1-Click Buttons required by prompt) -->
+      <div class="mb-6 bg-white rounded-3xl p-4 sm:p-5 border-3 border-2 border-spacePurple-dark shadow-cartoon-sm">
+        <div class="text-xs font-extrabold uppercase tracking-wider text-spacePurple mb-3 flex items-center gap-2">
+          <span>⚡ Быстрые пресеты пар для сравнения (в 1 клик • включая новую серию #11–#17):</span>
+        </div>
+        <div class="flex flex-wrap gap-2" id="presetButtonsContainer">
+          <button onclick="setComparisonPair(12, 15, this)" class="preset-btn px-3 py-2 rounded-xl text-xs sm:text-sm font-extrabold border-2 border-spacePurple-dark bg-limePack text-spacePurple-dark shadow-cartoon-sm hover:-translate-y-0.5 transition-all">
+            🐾 С лапками (#12) vs Без лапок (#15)
+          </button>
+          <button onclick="setComparisonPair(11, 14, this)" class="preset-btn px-3 py-2 rounded-xl text-xs sm:text-sm font-extrabold border-2 border-spacePurple-dark bg-milkWhite hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            ⚪ Белый верх: Кот (#11) vs Пёс (#14)
+          </button>
+          <button onclick="setComparisonPair(14, 15, this)" class="preset-btn px-3 py-2 rounded-xl text-xs sm:text-sm font-extrabold border-2 border-spacePurple-dark bg-milkWhite hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            ✨ Фиолетовые звезды (#14) vs Зеленые звезды (#15)
+          </button>
+          <button onclick="setComparisonPair(15, 16, this)" class="preset-btn px-3 py-2 rounded-xl text-xs sm:text-sm font-extrabold border-2 border-spacePurple-dark bg-milkWhite hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            🧼 Зеленые звезды (#15) vs Ультра-Чистый (#16)
+          </button>
+          <button onclick="setComparisonPair(13, 17, this)" class="preset-btn px-3 py-2 rounded-xl text-xs sm:text-sm font-extrabold border-2 border-spacePurple-dark bg-milkWhite hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            🌿 Фисташковый 2 кг: Зеленые искры (#13) vs Белые искры (#17)
+          </button>
+          <button onclick="setComparisonPair(10, 11, this)" class="preset-btn px-3 py-2 rounded-xl text-xs sm:text-sm font-extrabold border-2 border-spacePurple-dark bg-milkWhite hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            🐱 Кот 10 кг: Полный Космос (#10) vs Белый + Сиреневый (#11)
+          </button>
+          <button onclick="setComparisonPair(4, 3, this)" class="preset-btn px-3 py-2 rounded-xl text-xs sm:text-sm font-extrabold border-2 border-spacePurple-dark bg-milkWhite hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            🚀 Ракета: Собаки (#4) vs Кошки (#3)
+          </button>
+          <button onclick="setComparisonPair(1, 2, this)" class="preset-btn px-3 py-2 rounded-xl text-xs sm:text-sm font-extrabold border-2 border-spacePurple-dark bg-milkWhite hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            🦸 Супергерои в полный рост (#1 vs #2)
+          </button>
+        </div>
+      </div>
+
+      <!-- Selectors for Left (Design A) and Right (Design B) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+        <!-- Left Selector Card -->
+        <div class="bg-limePack/35 rounded-3xl p-4 border-2 border-spacePurple-dark shadow-cartoon-sm flex flex-col justify-between gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="px-3 py-1 rounded-full bg-limePack-vibrant text-white font-display font-black text-xs uppercase border-2 border-spacePurple-dark">
+              ◀ ДИЗАЙН А (СЛЕВА • 1–17)
+            </span>
+            <span id="leftBadgeMeta" class="text-xs font-extrabold text-spacePurple-dark bg-white px-2.5 py-1 rounded-lg border border-spacePurple-dark">
+              Для собак • 10 кг
+            </span>
+          </div>
+          <select id="selectLeft" onchange="onSelectChange('left', this.value)" class="w-full p-2.5 rounded-xl bg-white border-2 border-spacePurple-dark font-display font-extrabold text-sm sm:text-base text-spacePurple-dark focus:outline-none">
+            <!-- Populated by JS -->
+          </select>
+          <!-- Mini thumbnail strip for Left (17 items) -->
+          <div id="thumbsLeft" class="grid grid-cols-6 sm:grid-cols-9 gap-1.5 pt-1">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Right Selector Card -->
+        <div class="bg-lavenderBlock/25 rounded-3xl p-4 border-2 border-spacePurple-dark shadow-cartoon-sm flex flex-col justify-between gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="px-3 py-1 rounded-full bg-spacePurple text-white font-display font-black text-xs uppercase border-2 border-spacePurple-dark">
+              ДИЗАЙН Б (СПРАВА • 1–17) ▶
+            </span>
+            <span id="rightBadgeMeta" class="text-xs font-extrabold text-spacePurple-dark bg-white px-2.5 py-1 rounded-lg border border-spacePurple-dark">
+              Для собак • 10 кг
+            </span>
+          </div>
+          <select id="selectRight" onchange="onSelectChange('right', this.value)" class="w-full p-2.5 rounded-xl bg-white border-2 border-spacePurple-dark font-display font-extrabold text-sm sm:text-base text-spacePurple-dark focus:outline-none">
+            <!-- Populated by JS -->
+          </select>
+          <!-- Mini thumbnail strip for Right (17 items) -->
+          <div id="thumbsRight" class="grid grid-cols-6 sm:grid-cols-9 gap-1.5 pt-1">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN VISUAL SPLIT-SLIDER STAGE & LIVE ANALYTICS GRID -->
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left 7 Cols: Interactive Before/After Curtain Stage -->
+        <div class="xl:col-span-7 bg-white rounded-3xl p-4 sm:p-6 border-4 border-spacePurple-dark shadow-cartoon-lg">
+          
+          <!-- Mode 1: Curtain Split-Slider -->
+          <div id="curtainStageWrapper" class="relative">
+            <div id="compareStage" class="compare-stage relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border-3 border-2 border-spacePurple-dark bg-[#ECEEE6] cursor-ew-resize select-none">
+              
+              <!-- Image B (Right / Underneath Layer) -->
+              <img id="imgRight" src="Gemini_Generated_Image_ope8bfope8bfope8.jpg" alt="Дизайн Б" class="pack-zoom-target absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-300 scale-125" />
+
+              <!-- Image A (Left / Clipped Layer on Top) -->
+              <img id="imgLeft" src="Gemini_Generated_Image_58mjj758mjj758mj.jpg" alt="Дизайн А" class="pack-zoom-target absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-300 scale-125" style="clip-path: inset(0 50% 0 0);" />
+
+              <!-- Floating Labels Top-Left and Top-Right -->
+              <div class="absolute top-3 left-3 z-20 pointer-events-none max-w-[42%]">
+                <div class="px-3 py-1.5 rounded-xl bg-limePack/95 backdrop-blur-sm border-2 border-spacePurple-dark shadow-cartoon-sm">
+                  <div class="text-[10px] font-black uppercase text-spacePurple-dark opacity-80">Слева • Образец А</div>
+                  <div id="stageLabelLeft" class="font-display font-black text-xs sm:text-sm text-spacePurple-dark truncate">Ракета (Для собак)</div>
+                </div>
+              </div>
+
+              <div class="absolute top-3 right-3 z-20 pointer-events-none max-w-[42%] text-right">
+                <div class="px-3 py-1.5 rounded-xl bg-spacePurple/95 backdrop-blur-sm border-2 border-spacePurple-dark shadow-cartoon-sm text-white">
+                  <div class="text-[10px] font-black uppercase text-limePack">Справа • Образец Б</div>
+                  <div id="stageLabelRight" class="font-display font-black text-xs sm:text-sm truncate">Ракета (Для кошек)</div>
+                </div>
+              </div>
+
+              <!-- Vertical Divider Line & Handle -->
+              <div id="sliderDivider" class="absolute top-0 bottom-0 z-30 w-1 bg-spacePurple-dark pointer-events-none" style="left: 50%;">
+                <!-- Glowing line accent -->
+                <div class="absolute inset-y-0 -left-0.5 w-2 bg-starYellow border-x border-spacePurple-dark"></div>
+                <!-- Central Circular Star Handle -->
+                <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-starYellow border-4 border-spacePurple-dark shadow-cartoon flex items-center justify-center">
+                  <svg class="w-7 h-7 text-spacePurple-dark" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dedicated Range Slider Control Bar Underneath -->
+            <div class="mt-4 bg-milkWhite p-3.5 rounded-2xl border-2 border-spacePurple-dark flex flex-col sm:flex-row items-center gap-4">
+              <span class="text-xs font-extrabold uppercase text-spacePurple-dark whitespace-nowrap flex items-center gap-1.5">
+                <span>↔️ Положение шторки:</span>
+                <strong id="sliderPercentText" class="px-2 py-0.5 rounded bg-starYellow border border-spacePurple-dark">50%</strong>
+              </span>
+              <input id="compareRangeInput" type="range" min="0" max="100" value="50" oninput="updateSliderPosition(this.value)" class="pet-slider w-full" />
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button onclick="updateSliderPosition(15)" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-white hover:bg-limePack border border-spacePurple-dark">А</button>
+                <button onclick="updateSliderPosition(50)" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-starYellow border border-spacePurple-dark">50/50</button>
+                <button onclick="updateSliderPosition(85)" class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-white hover:bg-limePack border border-spacePurple-dark">Б</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mode 2: Side-by-Side Comparison View (Hidden by default) -->
+          <div id="sideBySideWrapper" class="hidden">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl overflow-hidden border-2 border-spacePurple-dark bg-[#ECEEE6] relative aspect-[4/4]">
+                <img id="imgLeftSide" src="Gemini_Generated_Image_58mjj758mjj758mj.jpg" alt="Дизайн А" class="w-full h-full object-cover scale-125" />
+                <div class="absolute bottom-3 left-3 right-3 bg-limePack/95 border-2 border-spacePurple-dark rounded-xl p-2 text-center font-display font-black text-xs text-spacePurple-dark" id="sideCaptionLeft">
+                  Дизайн А
+                </div>
+              </div>
+              <div class="rounded-2xl overflow-hidden border-2 border-spacePurple-dark bg-[#ECEEE6] relative aspect-[4/4]">
+                <img id="imgRightSide" src="Gemini_Generated_Image_ope8bfope8bfope8.jpg" alt="Дизайн Б" class="w-full h-full object-cover scale-125" />
+                <div class="absolute bottom-3 left-3 right-3 bg-spacePurple/95 border-2 border-spacePurple-dark rounded-xl p-2 text-center font-display font-black text-xs text-white" id="sideCaptionRight">
+                  Дизайн Б
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Key Differences Summary Box -->
+          <div class="mt-4 p-4 rounded-2xl bg-limePack/25 border-2 border-spacePurple-dark flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div class="space-y-1">
+              <div class="text-xs font-extrabold uppercase text-spacePurple">💡 Ключевое отличие выбранной пары:</div>
+              <p id="pairDiffSummary" class="text-sm font-bold text-spacePurple-dark">
+                Единая модульная композиция с ракетой: меняется маскот (Пес vs Кот) и вкусовая планета (Ягненок vs Лосось).
+              </p>
+            </div>
+            <button onclick="swapComparisonPair()" class="shrink-0 px-3.5 py-2 rounded-xl bg-white hover:bg-starYellow text-spacePurple-dark font-extrabold text-xs border-2 border-spacePurple-dark shadow-cartoon-sm transition-all">
+              🔄 Поменять местами
+            </button>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Synchronized Infographic & Nutritional Comparison -->
+        <div class="xl:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border-4 border-spacePurple-dark shadow-cartoon-lg space-y-6">
+          <div class="flex items-center justify-between border-b-2 border-spacePurple-dark/15 pb-3">
+            <div>
+              <h3 class="font-display font-black text-xl text-spacePurple-dark">📊 Инфографика сравнения</h3>
+              <p class="text-xs text-spacePurple font-medium">Визуальные метрики дизайна и профиль корма</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-limePack text-spacePurple-dark font-black text-xs border border-spacePurple-dark">LIVE</span>
+          </div>
+
+          <!-- Legend for A and B -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-3 rounded-2xl bg-limePack/30 border-2 border-spacePurple-dark">
+              <div class="text-[11px] font-black uppercase text-spacePurple">Образец А (Слева)</div>
+              <div id="statTitleA" class="font-display font-black text-sm text-spacePurple-dark truncate mt-0.5">#4 Ракета • Собаки</div>
+              <div id="statSubA" class="text-xs font-bold text-spacePurple mt-1">🐑 Ягненок • 2 кг</div>
+            </div>
+            <div class="p-3 rounded-2xl bg-spacePurple/15 border-2 border-spacePurple-dark">
+              <div class="text-[11px] font-black uppercase text-spacePurple">Образец Б (Справа)</div>
+              <div id="statTitleB" class="font-display font-black text-sm text-spacePurple-dark truncate mt-0.5">#3 Ракета • Кошки</div>
+              <div id="statSubB" class="text-xs font-bold text-spacePurple mt-1">🐟 Лосось • 2 кг</div>
+            </div>
+          </div>
+
+          <!-- Visual Design Metrics Bars -->
+          <div class="space-y-3.5" id="designMetricsContainer">
+            <!-- Populated dynamically by JS -->
+          </div>
+
+          <!-- Nutritional & Product Profile Comparison Table -->
+          <div class="bg-milkWhite rounded-2xl p-4 border-2 border-spacePurple-dark space-y-3">
+            <div class="text-xs font-black uppercase text-spacePurple-dark flex items-center justify-between">
+              <span>🥣 Пищевой профиль и характеристики</span>
+              <span class="text-[11px] text-spacePurple font-bold">На 100 г корма</span>
+            </div>
+            <div id="nutritionComparisonRows" class="space-y-2.5 text-xs sm:text-sm">
+              <!-- Populated dynamically by JS -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================= 2. BRAND INFOGRAPHICS & FEEDING CALCULATOR ======================= -->
+  <section id="section-infographics" class="py-12 sm:py-16 bg-spacePurple text-milkWhite border-y-4 border-spacePurple-dark scroll-mt-20 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Heading -->
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-limePack text-spacePurple-dark font-extrabold text-xs uppercase mb-3 border-2 border-spacePurple-dark shadow-cartoon-sm">
+          <span>🧬 Инфографика с упаковки PET STAR</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-white">
+          Космическая польза в каждой грануле
+        </h2>
+        <p class="text-milkWhite/85 mt-2 text-sm sm:text-base">
+          На всех концептах упаковки используются фирменные пиктограммы в кружочках и верхние капсульные теги, которые мгновенно считываются покупателем.
+        </p>
+      </div>
+
+      <!-- 4 Core Functional Icon Cards (Matching the Pack Icons) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        
+        <!-- Card 1: GMO Free -->
+        <div class="bg-milkWhite text-spacePurple-dark rounded-3xl p-6 border-4 border-spacePurple-dark shadow-cartoon hover:-translate-y-1 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-16 h-16 rounded-full bg-limePack border-3 border-2 border-spacePurple-dark flex items-center justify-center mb-4 shadow-cartoon-sm">
+              <svg class="w-9 h-9 text-spacePurple-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4.5 0-8-3.5-8-8 0-5.5 8-10 8-10s8 4.5 8 10c0 4.5-3.5 8-8 8z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21V11m0 0l-3 3m3-3l3 3"/>
+              </svg>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-md bg-limePack/40 text-spacePurple-dark font-extrabold text-xs uppercase">Пиктограмма №1</span>
+            <h3 class="font-display font-black text-xl mt-2">Без ГМО • 100% Natural</h3>
+            <p class="text-sm text-spacePurple mt-2 leading-relaxed">
+              Натуральное филе дикого лосося и фермерского ягненка без искусственных красителей, сои и усилителей вкуса.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t-2 border-spacePurple-dark/10 flex items-center justify-between text-xs font-extrabold">
+            <span>Усвояемость белка</span>
+            <span class="px-2 py-0.5 rounded bg-limePack border border-spacePurple-dark">92.4%</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Coat & Skin -->
+        <div class="bg-milkWhite text-spacePurple-dark rounded-3xl p-6 border-4 border-spacePurple-dark shadow-cartoon hover:-translate-y-1 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-16 h-16 rounded-full bg-salmonCoral border-2 border-spacePurple-dark flex items-center justify-center mb-4 shadow-cartoon-sm text-white">
+              <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M8 7c0 4 4 6 4 10M16 7c0 4-4 6-4 10M6 5l1.5 1.5M18 5l-1.5 1.5"/>
+              </svg>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-md bg-salmonCoral/20 text-salmonCoral-dark font-extrabold text-xs uppercase">Пиктограмма №2</span>
+            <h3 class="font-display font-black text-xl mt-2">Для шерсти и кожи</h3>
+            <p class="text-sm text-spacePurple mt-2 leading-relaxed">
+              Высокое содержание жирных кислот Омега-3 и Омега-6, биотина и хелатного цинка для густой и блестящей шерсти.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t-2 border-spacePurple-dark/10 flex items-center justify-between text-xs font-extrabold">
+            <span>Омега-3 / Омега-6</span>
+            <span class="px-2 py-0.5 rounded bg-salmonCoral text-white border border-spacePurple-dark">3.8%</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Digestion -->
+        <div class="bg-milkWhite text-spacePurple-dark rounded-3xl p-6 border-4 border-spacePurple-dark shadow-cartoon hover:-translate-y-1 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-16 h-16 rounded-full bg-starYellow border-2 border-spacePurple-dark flex items-center justify-center mb-4 shadow-cartoon-sm">
+              <svg class="w-9 h-9 text-spacePurple-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 4c0 3-3 4-3 8a6 6 0 0012 0c0-3-2-5-4-5-2 0-3 1.5-3 3.5"/>
+              </svg>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-md bg-starYellow/50 text-spacePurple-dark font-extrabold text-xs uppercase">Пиктограмма №3</span>
+            <h3 class="font-display font-black text-xl mt-2">Для пищеварения</h3>
+            <p class="text-sm text-spacePurple mt-2 leading-relaxed">
+              Природные пребиотики MOS и FOS, мякоть свеклы и нежная клетчатка обеспечивают комфортную работу ЖКТ.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t-2 border-spacePurple-dark/10 flex items-center justify-between text-xs font-extrabold">
+            <span>Пребиотический комплекс</span>
+            <span class="px-2 py-0.5 rounded bg-starYellow border border-spacePurple-dark">Актив +</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Top Capsules (Pill Bags / Cutcin Weight / Noth Free) -->
+        <div class="bg-milkWhite text-spacePurple-dark rounded-3xl p-6 border-4 border-spacePurple-dark shadow-cartoon hover:-translate-y-1 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-16 h-16 rounded-full bg-spacePurple border-2 border-spacePurple-dark flex items-center justify-center mb-4 shadow-cartoon-sm text-limePack">
+              <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8L12 3z"/>
+              </svg>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-md bg-spacePurple/15 text-spacePurple font-extrabold text-xs uppercase">3 капсулы сверху</span>
+            <h3 class="font-display font-black text-xl mt-2">Контроль веса и форма</h3>
+            <p class="text-sm text-spacePurple mt-2 leading-relaxed">
+              Верхние плашки <strong>PILL BAGS • CUTCIN WEIGHT • NOTH FREE</strong> подчеркивают удобную гранулу, контроль веса и чистоту рецептуры.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t-2 border-spacePurple-dark/10 flex items-center justify-between text-xs font-extrabold">
+            <span>Замок свежести</span>
+            <span class="px-2 py-0.5 rounded bg-spacePurple text-white border border-spacePurple-dark">Zip-Lock</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE DAILY PORTION & BAG DURATION CALCULATOR -->
+      <div class="bg-milkWhite text-spacePurple-dark rounded-3xl p-6 sm:p-8 border-4 border-spacePurple-dark shadow-cartoon-lg">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Calculator Controls -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <span class="text-xs font-black uppercase text-salmonCoral-dark">Интерактивный расчёт</span>
+                <h3 class="font-display font-black text-2xl sm:text-3xl text-spacePurple-dark">
+                  Калькулятор расхода пачки 2 кг и 10 кг
+                </h3>
+              </div>
+
+              <!-- Pet Type Switcher -->
+              <div class="inline-flex bg-limePack/30 p-1.5 rounded-2xl border-2 border-spacePurple-dark">
+                <button id="calcCatBtn" onclick="setCalcPet('cat')" class="px-4 py-2 rounded-xl font-display font-black text-sm bg-spacePurple text-white shadow-cartoon-sm transition-all">
+                  🐱 Кошка (Лосось)
+                </button>
+                <button id="calcDogBtn" onclick="setCalcPet('dog')" class="px-4 py-2 rounded-xl font-display font-black text-sm text-spacePurple-dark hover:bg-white/70 transition-all">
+                  🐶 Собака (Ягненок)
+                </button>
+              </div>
+            </div>
+
+            <!-- Pet Weight Slider -->
+            <div class="bg-white p-4 rounded-2xl border-2 border-spacePurple-dark space-y-2">
+              <div class="flex justify-between items-center">
+                <label for="petWeightRange" class="font-bold text-sm text-spacePurple">Вес вашего питомца:</label>
+                <span id="petWeightValue" class="px-3 py-1 rounded-xl bg-starYellow border-2 border-spacePurple-dark font-display font-black text-lg">
+                  4.5 кг
+                </span>
+              </div>
+              <input id="petWeightRange" type="range" min="1" max="12" step="0.5" value="4.5" oninput="updateCalculator()" class="pet-slider w-full" />
+              <div class="flex justify-between text-xs font-bold text-spacePurple/70 pt-1">
+                <span id="weightMinLabel">1 кг (Котёнок)</span>
+                <span id="weightMidLabel">5 кг (Взрослый кот)</span>
+                <span id="weightMaxLabel">12 кг (Крупная порода)</span>
+              </div>
+            </div>
+
+            <!-- Activity Level Buttons -->
+            <div class="grid grid-cols-3 gap-2.5">
+              <button onclick="setCalcActivity(0.85, this)" class="calc-act-btn p-2.5 rounded-xl border-2 border-spacePurple-dark bg-white text-xs sm:text-sm font-extrabold text-spacePurple-dark hover:bg-limePack/30 transition-all">
+                🛋️ Спокойный / Дома
+              </button>
+              <button onclick="setCalcActivity(1.0, this)" class="calc-act-btn p-2.5 rounded-xl border-2 border-spacePurple-dark bg-limePack text-xs sm:text-sm font-extrabold text-spacePurple-dark shadow-cartoon-sm transition-all">
+                🚀 Активный космонавт
+              </button>
+              <button onclick="setCalcActivity(1.2, this)" class="calc-act-btn p-2.5 rounded-xl border-2 border-spacePurple-dark bg-white text-xs sm:text-sm font-extrabold text-spacePurple-dark hover:bg-limePack/30 transition-all">
+                ⚡ Супергерой (Спорт)
+              </button>
+            </div>
+          </div>
+
+          <!-- Calculator Output Cards -->
+          <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3.5">
+            <div class="p-4 rounded-2xl bg-starYellow border-2 border-spacePurple-dark shadow-cartoon-sm flex items-center justify-between">
+              <div>
+                <div class="text-xs font-black uppercase text-spacePurple-dark/80">Суточная норма корма</div>
+                <div id="calcGramsPerDay" class="font-display font-black text-3xl text-spacePurple-dark">62 г / день</div>
+              </div>
+              <div class="text-3xl">🥣</div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-limePack border-2 border-spacePurple-dark shadow-cartoon-sm flex items-center justify-between">
+              <div>
+                <div class="text-xs font-black uppercase text-spacePurple-dark/80">Пачки 2 кг хватит на</div>
+                <div id="calcDays2kg" class="font-display font-black text-2xl sm:text-3xl text-spacePurple-dark">32 дня</div>
+                <div class="text-xs font-bold text-spacePurple-dark">Оптимально для пробы и свежести</div>
+              </div>
+              <div class="px-3 py-1.5 rounded-xl bg-white border-2 border-spacePurple-dark font-display font-black text-sm">2 кг</div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-spacePurple text-white border-2 border-spacePurple-dark shadow-cartoon-sm flex items-center justify-between">
+              <div>
+                <div class="text-xs font-black uppercase text-limePack">Мешка 10 кг хватит на</div>
+                <div id="calcDays10kg" class="font-display font-black text-2xl sm:text-3xl text-white">161 день</div>
+                <div class="text-xs font-bold text-limePack">Выгодный запас для питомника или семьи</div>
+              </div>
+              <div class="px-3 py-1.5 rounded-xl bg-limePack text-spacePurple-dark border-2 border-spacePurple-dark font-display font-black text-sm">10 кг</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================= 3. ALL 10 DESIGNS GALLERY WITH FILTERS ======================= -->
+  <section id="section-gallery" class="py-12 sm:py-16 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Gallery Header & Filter Pills -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-limePack border-2 border-spacePurple-dark text-spacePurple-dark font-extrabold text-xs uppercase mb-2 shadow-cartoon-sm">
+            <span>📦 Полный каталог дизайнов (1–17)</span>
+          </div>
+          <h2 class="font-display font-black text-3xl sm:text-4xl text-spacePurple-dark">
+            Все 17 концептов упаковки PET STAR
+          </h2>
+          <p class="text-spacePurple font-medium mt-1">
+            Любую из 17 карточек можно в 1 клик отправить на ползунок сравнения (Образец А или Б) или открыть в крупном разборе.
+          </p>
+        </div>
+
+        <!-- Filter Buttons required by prompt -->
+        <div class="flex flex-wrap gap-2" id="galleryFilters">
+          <button onclick="filterGallery('all', this)" class="filter-btn px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-spacePurple text-white shadow-cartoon-sm transition-all">
+            Все (17)
+          </button>
+          <button onclick="filterGallery('split', this)" class="filter-btn px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-lavenderBlock/25 hover:bg-lavenderBlock/50 text-spacePurple-dark transition-all">
+            ✨ Новая серия Split-Block (7)
+          </button>
+          <button onclick="filterGallery('dog', this)" class="filter-btn px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            Для собак 🐶 (10)
+          </button>
+          <button onclick="filterGallery('cat', this)" class="filter-btn px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            Для кошек 🐱 (7)
+          </button>
+          <button onclick="filterGallery('2kg', this)" class="filter-btn px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            Фасовка 2 кг (9)
+          </button>
+          <button onclick="filterGallery('10kg', this)" class="filter-btn px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            Фасовка 10 кг (8)
+          </button>
+        </div>
+      </div>
+
+      <!-- Cards Grid (Populated by JS) -->
+      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <!-- Populated dynamically with all 17 packs -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================= 4. INTERACTIVE PACKAGING ANATOMY ======================= -->
+  <section id="section-anatomy" class="py-12 sm:py-16 bg-gradient-to-b from-limePack/30 to-milkWhite border-t-4 border-spacePurple-dark scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-starYellow border-2 border-spacePurple-dark text-spacePurple-dark font-extrabold text-xs uppercase mb-2 shadow-cartoon-sm">
+          <span>🔍 Архитектура дизайна</span>
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-spacePurple-dark">
+          Интерактивная «Анатомия упаковки»
+        </h2>
+        <p class="text-spacePurple font-medium mt-1">
+          Нажимайте на пульсирующие точки <strong class="text-spacePurple-dark">1–5</strong> на пачке или карточки справа, чтобы изучить продающую структуру пакета дой-пак.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left 6 Cols: Pack Image with 5 Interactive Hotspots -->
+        <div class="lg:col-span-6 bg-white rounded-3xl p-4 sm:p-6 border-4 border-spacePurple-dark shadow-cartoon-lg">
+          <!-- Switcher to test anatomy on different series -->
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b-2 border-spacePurple-dark/10">
+            <span class="text-xs font-extrabold uppercase text-spacePurple">Образец для разбора:</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="setAnatomyImage('Gemini_Generated_Image_ope8bfope8bfope8.jpg', this)" class="anat-pack-btn px-2.5 py-1 rounded-lg text-xs font-extrabold bg-limePack border border-spacePurple-dark text-spacePurple-dark">
+                #3 Ракета (Кот)
+              </button>
+              <button onclick="setAnatomyImage('Gemini_Generated_Image_sfy4k6sfy4k6sfy4.jpg', this)" class="anat-pack-btn px-2.5 py-1 rounded-lg text-xs font-extrabold bg-white border border-spacePurple-dark text-spacePurple-dark">
+                #12 Пёс с Лапками
+              </button>
+              <button onclick="setAnatomyImage('Gemini_Generated_Image_fn7lg7fn7lg7fn7l.jpg', this)" class="anat-pack-btn px-2.5 py-1 rounded-lg text-xs font-extrabold bg-white border border-spacePurple-dark text-spacePurple-dark">
+                #11 Split-Block (Кот)
+              </button>
+              <button onclick="setAnatomyImage('Gemini_Generated_Image_qs1fgmqs1fgmqs1f.jpg', this)" class="anat-pack-btn px-2.5 py-1 rounded-lg text-xs font-extrabold bg-white border border-spacePurple-dark text-spacePurple-dark">
+                #7 Инфографика
+              </button>
+              <button onclick="setAnatomyImage('Gemini_Generated_Image_6w51rp6w51rp6w51.jpg', this)" class="anat-pack-btn px-2.5 py-1 rounded-lg text-xs font-extrabold bg-white border border-spacePurple-dark text-spacePurple-dark">
+                #10 Космос 10 кг
+              </button>
+            </div>
+          </div>
+
+          <!-- Hotspot Canvas -->
+          <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden border-2 border-spacePurple-dark bg-[#ECEEE6]">
+            <img id="anatomyPackImg" src="Gemini_Generated_Image_ope8bfope8bfope8.jpg" alt="Анатомия упаковки PET STAR" class="w-full h-full object-cover scale-110 transition-all duration-300" />
+
+            <!-- Hotspot 1: Top tags & zip-lock -->
+            <button onclick="selectHotspot(1)" id="hotspotBtn-1" style="top: 13%; left: 50%;" class="hotspot-ring -translate-x-1/2 -translate-y-1/2 absolute z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-starYellow text-spacePurple-dark font-display font-black text-sm sm:text-base border-3 border-2 border-spacePurple-dark shadow-cartoon flex items-center justify-center hover:scale-110 transition-transform">
+              1
+            </button>
+
+            <!-- Hotspot 2: Star Logo PET STAR -->
+            <button onclick="selectHotspot(2)" id="hotspotBtn-2" style="top: 31%; left: 49%;" class="hotspot-ring -translate-x-1/2 -translate-y-1/2 absolute z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white text-spacePurple-dark font-display font-black text-sm sm:text-base border-2 border-spacePurple-dark shadow-cartoon flex items-center justify-center hover:scale-110 transition-transform">
+              2
+            </button>
+
+            <!-- Hotspot 3: Astronaut Mascot & Flavor Planets -->
+            <button onclick="selectHotspot(3)" id="hotspotBtn-3" style="top: 58%; left: 52%;" class="hotspot-ring -translate-x-1/2 -translate-y-1/2 absolute z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white text-spacePurple-dark font-display font-black text-sm sm:text-base border-2 border-spacePurple-dark shadow-cartoon flex items-center justify-center hover:scale-110 transition-transform">
+              3
+            </button>
+
+            <!-- Hotspot 4: Functional Icons Block -->
+            <button onclick="selectHotspot(4)" id="hotspotBtn-4" style="top: 86%; left: 60%;" class="hotspot-ring -translate-x-1/2 -translate-y-1/2 absolute z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white text-spacePurple-dark font-display font-black text-sm sm:text-base border-2 border-spacePurple-dark shadow-cartoon flex items-center justify-center hover:scale-110 transition-transform">
+              4
+            </button>
+
+            <!-- Hotspot 5: High-contrast Footer with Weight -->
+            <button onclick="selectHotspot(5)" id="hotspotBtn-5" style="top: 86%; left: 38%;" class="hotspot-ring -translate-x-1/2 -translate-y-1/2 absolute z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white text-spacePurple-dark font-display font-black text-sm sm:text-base border-2 border-spacePurple-dark shadow-cartoon flex items-center justify-center hover:scale-110 transition-transform">
+              5
+            </button>
+          </div>
+        </div>
+
+        <!-- Right 6 Cols: Interactive Hotspot Breakdown List -->
+        <div class="lg:col-span-6 space-y-3.5" id="hotspotListContainer">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= MODAL FOR DETAILED DESIGN INSPECTION ======================= -->
+  <div id="designModal" class="fixed inset-0 z-50 hidden bg-spacePurple-deep/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-milkWhite rounded-3xl max-w-4xl w-full border-4 border-spacePurple-dark shadow-cartoon-lg overflow-hidden animate-fadeIn">
+      <div class="bg-spacePurple text-white px-6 py-4 border-b-4 border-spacePurple-dark flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span id="modalIdBadge" class="px-2.5 py-1 rounded-lg bg-limePack text-spacePurple-dark font-display font-black text-sm">#1</span>
+          <h3 id="modalTitle" class="font-display font-black text-lg sm:text-xl">Концепт упаковки</h3>
+        </div>
+        <button onclick="closeDesignModal()" class="w-9 h-9 rounded-xl bg-white/15 hover:bg-salmonCoral text-white font-black flex items-center justify-center border border-white/30">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center max-h-[82vh] overflow-y-auto">
+        <div class="md:col-span-6 rounded-2xl overflow-hidden border-2 border-spacePurple-dark bg-[#ECEEE6] aspect-square">
+          <img id="modalImg" src="" alt="Крупный просмотр" class="w-full h-full object-cover scale-125" />
+        </div>
+        <div class="md:col-span-6 space-y-4">
+          <div id="modalTags" class="flex flex-wrap gap-2"></div>
+          <p id="modalDesc" class="text-sm sm:text-base text-spacePurple-dark leading-relaxed font-medium"></p>
+          <div id="modalStats" class="bg-white p-4 rounded-2xl border-2 border-spacePurple-dark space-y-2 text-xs sm:text-sm"></div>
+          <div class="grid grid-cols-2 gap-3 pt-2">
+            <button id="modalSendLeftBtn" class="py-2.5 px-4 rounded-xl bg-limePack hover:bg-limePack-vibrant text-spacePurple-dark font-display font-black text-xs sm:text-sm border-2 border-spacePurple-dark shadow-cartoon-sm">
+              ◀ В ползунок (Слева)
+            </button>
+            <button id="modalSendRightBtn" class="py-2.5 px-4 rounded-xl bg-spacePurple hover:bg-spacePurple-dark text-white font-display font-black text-xs sm:text-sm border-2 border-spacePurple-dark shadow-cartoon-sm">
+              В ползунок (Справа) ▶
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="bg-spacePurple-dark text-milkWhite py-8 border-t-4 border-spacePurple-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm">
+      <div class="flex items-center gap-2.5">
+        <span class="w-7 h-7 rounded-lg bg-limePack text-spacePurple-dark font-black flex items-center justify-center">★</span>
+        <span class="font-display font-black text-base">PET STAR</span>
+        <span class="text-milkWhite/70">— Интерактивная презентация линейки кормов (17 концептов)</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#section-compare" class="text-limePack hover:underline font-bold">К ползунку сравнения ↑</a>
+        <a href="#section-gallery" class="text-starYellow hover:underline font-bold">Все 17 пачек ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================= APPLICATION JAVASCRIPT ======================= -->
+  <script>
+    // =========================================================================
+    // 1. DATASET OF ALL 17 UPLOADED PACKAGING DESIGNS (Exact Filenames)
+    // =========================================================================
+    const designsData = [
+      {
+        id: 1,
+        file: 'Gemini_Generated_Image_trn0gitrn0gitrn0.jpg',
+        series: 'Сюжетный Супергерой',
+        isSplitBlock: false,
+        shortTitle: 'Супер-Пёс и Космо-Овечки',
+        title: 'Супер-Пёс и Космо-Овечки (2 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: '🐑 Ягненок',
+        bgColor: 'Лаймовый верх + Темно-фиолетовый подвал',
+        description: 'Сюжетная иллюстрация в полный рост: пес-супергерой в фиолетовом плаще и зеленом платке с лапкой в окружении летающих космо-овечек в скафандрах и планеты-овечки.',
+        shelfImpact: 92,
+        infographicClarity: 84,
+        cleanAirScore: 76,
+        mascotFocus: 88,
+        protein: '28%',
+        fat: '15%',
+        omega: '3.2%',
+        fiber: '3.0%',
+        kcal: '378 ккал',
+        iconsCount: '4 иконки в подвале'
+      },
+      {
+        id: 2,
+        file: 'Gemini_Generated_Image_5lpzd85lpzd85lpz.jpg',
+        series: 'Сюжетный Супергерой',
+        isSplitBlock: false,
+        shortTitle: 'Супер-Кот и Космо-Рыбки',
+        title: 'Супер-Кот и Космо-Рыбки (2 кг)',
+        pet: 'cat',
+        petLabel: '🐱 Для кошек',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Космический лосось',
+        flavorBadge: '🐟 Лосось',
+        bgColor: 'Лаймовый верх + Темно-фиолетовый подвал',
+        description: 'Сюжетная иллюстрация в полный рост для кошек: довольный кот-супергерой в зеленой маске и плаще в окружении космо-рыбок в шлемах и лососевой планеты с кольцом.',
+        shelfImpact: 93,
+        infographicClarity: 84,
+        cleanAirScore: 76,
+        mascotFocus: 89,
+        protein: '34%',
+        fat: '16%',
+        omega: '4.1%',
+        fiber: '2.5%',
+        kcal: '392 ккал',
+        iconsCount: '4 иконки в подвале'
+      },
+      {
+        id: 3,
+        file: 'Gemini_Generated_Image_ope8bfope8bfope8.jpg',
+        series: 'Космическая Ракета',
+        isSplitBlock: false,
+        shortTitle: 'Кот в Ракете (Space Salmon)',
+        title: 'Кот в Ракете (Space Salmon • 2 кг)',
+        pet: 'cat',
+        petLabel: '🐱 Для кошек',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Космический вкус: лосось',
+        flavorBadge: '🐟 Space Salmon',
+        bgColor: 'Лаймовый верх + Темно-фиолетовый подвал',
+        description: 'Динамичная композиция с ракетой, рыбой-астронавтом и планетой из стейка лосося. Подпись «FOR CATS / ДЛЯ КОШЕК» и 3 подписанные русские иконки («Без ГМО», «Для шерсти», «Для желудка»).',
+        shelfImpact: 96,
+        infographicClarity: 95,
+        cleanAirScore: 80,
+        mascotFocus: 91,
+        protein: '35%',
+        fat: '16%',
+        omega: '4.4%',
+        fiber: '2.4%',
+        kcal: '395 ккал',
+        iconsCount: '3 подписанные RU иконки'
+      },
+      {
+        id: 4,
+        file: 'Gemini_Generated_Image_58mjj758mjj758mj.jpg',
+        series: 'Космическая Ракета',
+        isSplitBlock: false,
+        shortTitle: 'Пёс в Ракете (Space Lamb)',
+        title: 'Пёс в Ракете (Space Lamb • 2 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Космический вкус ягненка',
+        flavorBadge: '🐑 Space Lamb',
+        bgColor: 'Лаймовый верх + Темно-фиолетовый подвал',
+        description: 'Динамика с ракетой и овечкой-астронавтом для собак: планета с мясным окороком, подпись «FOR DOGS / ДЛЯ СОБАК» и 3 русские пиктограммы пользы в нижнем блоке.',
+        shelfImpact: 96,
+        infographicClarity: 95,
+        cleanAirScore: 80,
+        mascotFocus: 91,
+        protein: '29%',
+        fat: '15%',
+        omega: '3.5%',
+        fiber: '3.1%',
+        kcal: '382 ккал',
+        iconsCount: '3 подписанные RU иконки'
+      },
+      {
+        id: 5,
+        file: 'Gemini_Generated_Image_v9blgv9blgv9blgv.jpg',
+        series: 'Космическая Ракета',
+        isSplitBlock: false,
+        shortTitle: 'Кот в Ракете (Минимализм)',
+        title: 'Кот в Ракете (Минимализм • 2 кг)',
+        pet: 'cat',
+        petLabel: '🐱 Для кошек',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Космический лосось',
+        flavorBadge: '🐟 Лосось',
+        bgColor: 'Чистый лаймовый + Фиолетовый подвал',
+        description: 'Чистая минималистичная композиция с ракетой без мелких второстепенных деталей и текстов — весь фокус на силуэте ракеты и логотипе PET STAR.',
+        shelfImpact: 91,
+        infographicClarity: 79,
+        cleanAirScore: 93,
+        mascotFocus: 90,
+        protein: '34%',
+        fat: '15%',
+        omega: '4.0%',
+        fiber: '2.5%',
+        kcal: '390 ккал',
+        iconsCount: '3 лаконичных символа'
+      },
+      {
+        id: 6,
+        file: 'Gemini_Generated_Image_1f0r5d1f0r5d1f0r.jpg',
+        series: 'Портрет в Скафандре',
+        isSplitBlock: false,
+        shortTitle: 'Пёс в Иллюминаторе 10 кг',
+        title: 'Пёс в Иллюминаторе (10 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: '🐑 Ягненок • 10 кг',
+        bgColor: 'Монолитный фисташково-лаймовый',
+        description: 'Крупный портрет подмигивающего пса в круглом фиолетовом скафандре-иллюминаторе на лаймовом фоне без нижней цветной плашки, с типографикой Miniopraphy Pet Food Bag.',
+        shelfImpact: 94,
+        infographicClarity: 88,
+        cleanAirScore: 90,
+        mascotFocus: 93,
+        protein: '27%',
+        fat: '14%',
+        omega: '3.1%',
+        fiber: '3.2%',
+        kcal: '374 ккал',
+        iconsCount: '4 иконки с подписями'
+      },
+      {
+        id: 7,
+        file: 'Gemini_Generated_Image_qs1fgmqs1fgmqs1f.jpg',
+        series: 'Фокус на Инфографику',
+        isSplitBlock: false,
+        shortTitle: 'Кот в Скафандре (Белый Эко)',
+        title: 'Кот в Скафандре (Белый Эко • 2 кг)',
+        pet: 'cat',
+        petLabel: '🐱 Для кошек',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Лосось Veterinary Line',
+        flavorBadge: '🐟 Эко-Лосось',
+        bgColor: 'Чистый белый фон + Фиолетовый логотип',
+        description: 'Белый минималистичный фон с контрастным фиолетовым логотипом PET STAR, центральной линией из 5 крупных зеленых иконок инфографики и котом в прозрачном шлеме снизу.',
+        shelfImpact: 95,
+        infographicClarity: 99,
+        cleanAirScore: 97,
+        mascotFocus: 86,
+        protein: '36%',
+        fat: '14%',
+        omega: '4.5%',
+        fiber: '2.8%',
+        kcal: '380 ккал',
+        iconsCount: '5 крупных иконок по центру'
+      },
+      {
+        id: 8,
+        file: 'Gemini_Generated_Image_ng7nl6ng7nl6ng7n.jpg',
+        series: 'Фокус на Инфографику',
+        isSplitBlock: false,
+        shortTitle: 'Пёс в Скафандре (Лайм Инфо)',
+        title: 'Пёс в Скафандре (Лайм Инфо • 2 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Ягненок Functional Line',
+        flavorBadge: '🐑 Инфо-Ягненок',
+        bgColor: 'Фисташково-лаймовый фон + Белый логотип',
+        description: 'Лаймовый фон с центральной линией из 5 связанных пиктограмм инфографики и крупным портретом улыбающегося пса в космическом скафандре в нижней зоне.',
+        shelfImpact: 93,
+        infographicClarity: 98,
+        cleanAirScore: 92,
+        mascotFocus: 87,
+        protein: '30%',
+        fat: '14%',
+        omega: '3.6%',
+        fiber: '3.2%',
+        kcal: '376 ккал',
+        iconsCount: '5 крупных иконок по центру'
+      },
+      {
+        id: 9,
+        file: 'Gemini_Generated_Image_2jwg1p2jwg1p2jwg.jpg',
+        series: 'Макро-Маскот Монолит',
+        isSplitBlock: false,
+        shortTitle: 'Кот Маскот Макро (Лайм 10 кг)',
+        title: 'Кот Маскот Макро (Лайм • 10 кг)',
+        pet: 'cat',
+        petLabel: '🐱 Для кошек',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Лосось Макси-пак',
+        flavorBadge: '🐟 Лосось • 10 кг',
+        bgColor: 'Монолитный лаймовый без нижней плашки',
+        description: 'Макро-портрет кота в зеленой маске с большими открытыми блестящими глазами на едином лаймовом фоне без нижней цветной плашки. Отличная считываемость издалека.',
+        shelfImpact: 97,
+        infographicClarity: 87,
+        cleanAirScore: 88,
+        mascotFocus: 98,
+        protein: '33%',
+        fat: '15%',
+        omega: '3.9%',
+        fiber: '2.7%',
+        kcal: '386 ккал',
+        iconsCount: '4 темные иконки внизу'
+      },
+      {
+        id: 10,
+        file: 'Gemini_Generated_Image_6w51rp6w51rp6w51.jpg',
+        series: 'Макро-Маскот Монолит',
+        isSplitBlock: false,
+        shortTitle: 'Кот Маскот Макро (Глубокий Космос 10 кг)',
+        title: 'Кот Маскот Макро (Глубокий Космос • 10 кг)',
+        pet: 'cat',
+        petLabel: '🐱 Для кошек',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Ночной космос • Лосось',
+        flavorBadge: '🐟 Лосось • Космос',
+        bgColor: 'Темно-фиолетовый фон на всю пачку',
+        description: 'Темно-фиолетовый космический фон на всю пачку 10 кг! Крупная мордочка кота в контрастной лаймовой маске с зажмуренными от удовольствия глазами-дугами.',
+        shelfImpact: 99,
+        infographicClarity: 90,
+        cleanAirScore: 89,
+        mascotFocus: 99,
+        protein: '35%',
+        fat: '16%',
+        omega: '4.3%',
+        fiber: '2.6%',
+        kcal: '394 ккал',
+        iconsCount: '4 белые иконки внизу'
+      },
+      {
+        id: 11,
+        file: 'Gemini_Generated_Image_fn7lg7fn7lg7fn7l.jpg',
+        series: 'Split Color-Block (Новинка)',
+        isSplitBlock: true,
+        shortTitle: 'Кот Макро (Белый верх + Сиреневый блок 10 кг)',
+        title: 'Кот Макро (Белый верх + Сиреневый блок • 10 кг)',
+        pet: 'cat',
+        petLabel: '🐱 Для кошек',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Лосось Split-Block',
+        flavorBadge: '🐟 Лосось • Белый/Сирень',
+        bgColor: 'Чистый белый верх + Лавандово-сиреневый блок (#9B72AA)',
+        description: 'Двухцветный блок 10 кг: чистый белый верх, ярко-зеленый логотип PET STAR, крупная мордочка кота в зеленой маске с закрытыми глазами-улыбкой и лавандово-сиреневый нижний блок с белой инфографикой.',
+        shelfImpact: 98,
+        infographicClarity: 95,
+        cleanAirScore: 97,
+        mascotFocus: 98,
+        protein: '35%',
+        fat: '15%',
+        omega: '4.2%',
+        fiber: '2.6%',
+        kcal: '390 ккал',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 12,
+        file: 'Gemini_Generated_Image_sfy4k6sfy4k6sfy4.jpg',
+        series: 'Split Color-Block (Новинка)',
+        isSplitBlock: true,
+        shortTitle: 'Пёс с Лапками (Кремовый Лайм + Сиреневый блок 10 кг)',
+        title: 'Пёс с Лапками (Кремовый Лайм + Сиреневый блок • 10 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Ягненок (Пёс с лапками)',
+        flavorBadge: '🐾 Ягненок • С лапками',
+        bgColor: 'Светло-сливочный лайм + Сиреневый блок (#9B72AA)',
+        description: 'Уникальный игровой акцент: подмигивающий сиреневый пес положил две пухлые белые лапки прямо на границу сиреневого нижнего блока! Светло-сливочный лаймовый верх и зеленый логотип PET STAR.',
+        shelfImpact: 99,
+        infographicClarity: 94,
+        cleanAirScore: 91,
+        mascotFocus: 100,
+        protein: '29%',
+        fat: '15%',
+        omega: '3.5%',
+        fiber: '3.1%',
+        kcal: '384 ккал',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 13,
+        file: 'Gemini_Generated_Image_er0494er0494er04.jpg',
+        series: 'Split Color-Block (Новинка)',
+        isSplitBlock: true,
+        shortTitle: 'Пёс Макро (Фисташковый + Зеленые искры 2 кг)',
+        title: 'Пёс Макро (Фисташковый + Зеленые искры • 2 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: '🐑 Ягненок • Зеленые искры',
+        bgColor: 'Фисташково-лаймовый верх + Сиреневый блок',
+        description: 'Фасовка 2 кг в дизайне Split-Block: фисташково-лаймовый верх, белый логотип с салатовой обводкой, россыпь зеленых звездочек и точек по бокам, крупный портрет пса с двумя открытыми глазами.',
+        shelfImpact: 95,
+        infographicClarity: 93,
+        cleanAirScore: 88,
+        mascotFocus: 97,
+        protein: '29%',
+        fat: '15%',
+        omega: '3.4%',
+        fiber: '3.0%',
+        kcal: '380 ккал',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 14,
+        file: 'Gemini_Generated_Image_5cpva95cpva95cpv.jpg',
+        series: 'Split Color-Block (Новинка)',
+        isSplitBlock: true,
+        shortTitle: 'Пёс Подмигивающий (Белый + Фиолетовые звезды 10 кг)',
+        title: 'Пёс Подмигивающий (Белый + Фиолетовые звезды • 10 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: '🐑 Ягненок • Фиолет звезды',
+        bgColor: 'Белый верх (Фиолетовые звезды) + Сиреневый блок',
+        description: 'Белый верх с зеленым логотипом PET STAR и контрастными темно-фиолетовыми звездочками вокруг ушей подмигивающего пса. Создает графичную перекличку между контуром ушей и фоновыми искрами.',
+        shelfImpact: 97,
+        infographicClarity: 95,
+        cleanAirScore: 93,
+        mascotFocus: 98,
+        protein: '28%',
+        fat: '14%',
+        omega: '3.3%',
+        fiber: '3.2%',
+        kcal: '376 ккал',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 15,
+        file: 'Gemini_Generated_Image_op9r3xop9r3xop9r.jpg',
+        series: 'Split Color-Block (Новинка)',
+        isSplitBlock: true,
+        shortTitle: 'Пёс Подмигивающий (Белый + Зеленые звезды 10 кг)',
+        title: 'Пёс Подмигивающий (Белый + Зеленые звезды • 10 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: '🐑 Ягненок • Зеленые звезды',
+        bgColor: 'Белый верх (Зеленые звезды) + Сиреневый блок',
+        description: 'Белый верх с зеленым логотипом и ярко-зелеными звездочками по краям пачки, которые поддерживают цвет логотипа и шейного платка подмигивающего пса.',
+        shelfImpact: 97,
+        infographicClarity: 95,
+        cleanAirScore: 94,
+        mascotFocus: 98,
+        protein: '28%',
+        fat: '14%',
+        omega: '3.3%',
+        fiber: '3.2%',
+        kcal: '376 ккал',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 16,
+        file: 'Gemini_Generated_Image_65bdzo65bdzo65bd.jpg',
+        series: 'Split Color-Block (Новинка)',
+        isSplitBlock: true,
+        shortTitle: 'Пёс Подмигивающий (Белый Ультра-Чистый 10 кг)',
+        title: 'Пёс Подмигивающий (Белый Ультра-Чистый • 10 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: '🐑 Ягненок • Ультра-Чистый',
+        bgColor: 'Белый Ультра-Чистый верх + Сиреневый блок',
+        description: 'Максимальный воздух и чистота: белый верх полностью очищен от бокового паттерна звезд — оставлены только 3 аккуратные зеленые искры непосредственно у логотипа PET STAR.',
+        shelfImpact: 96,
+        infographicClarity: 97,
+        cleanAirScore: 100,
+        mascotFocus: 99,
+        protein: '28%',
+        fat: '14%',
+        omega: '3.3%',
+        fiber: '3.2%',
+        kcal: '376 ккал',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 17,
+        file: 'Gemini_Generated_Image_fhnn1pfhnn1pfhnn.jpg',
+        series: 'Split Color-Block (Новинка)',
+        isSplitBlock: true,
+        shortTitle: 'Пёс Макро (Фисташковый Чистый + Белые искры 2 кг)',
+        title: 'Пёс Макро (Фисташковый Чистый + Белые искры • 2 кг)',
+        pet: 'dog',
+        petLabel: '🐶 Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: '🐑 Ягненок • Белые искры',
+        bgColor: 'Чистый фисташковый верх + Сиреневый блок',
+        description: 'Чистая версия фасовки 2 кг: фисташково-лаймовый верх без боковых зеленых точек и звездочек, белый логотип в окружении только 3 белых искр и портрет пса с открытыми глазами.',
+        shelfImpact: 95,
+        infographicClarity: 96,
+        cleanAirScore: 98,
+        mascotFocus: 98,
+        protein: '29%',
+        fat: '15%',
+        omega: '3.4%',
+        fiber: '3.0%',
+        kcal: '380 ккал',
+        iconsCount: '4 белые иконки на сиреневом'
+      }
+    ];
+
+    // =========================================================================
+    // 2. HOTSPOTS DATA FOR PACKAGING ANATOMY SECTION
+    // =========================================================================
+    const hotspotsData = [
+      {
+        id: 1,
+        zone: 'Зона 1 • Верхний клапан и Zip-Lock',
+        title: 'Капсульные теги и линия отрыва с ножницами',
+        desc: 'Три аккуратных скругленных бейджа («PILL BAGS», «CUTCIN WEIGHT», «NOTH FREE») в самой верхней части пакета формируют ощущение европейского функционального корма, а пунктирная линия с иконкой ножниц показывает удобное открытие.',
+        benefit: 'Повышает доверие к герметичности и сохранности гранул.'
+      },
+      {
+        id: 2,
+        zone: 'Зона 2 • Брендинг',
+        title: 'Звездный логотип PET STAR с четырехлучевой искрой',
+        desc: 'Крупный игровой леттеринг с вписанной звездочкой внутри буквы «P» и мягкой тенью. Отлично читается даже на миниатюре 150×150 px в мобильной выдаче маркетплейсов.',
+        benefit: 'Мгновенная узнаваемость бренда за 0.5 секунды.'
+      },
+      {
+        id: 3,
+        zone: 'Зона 3 • Эмоциональное ядро',
+        title: 'Маскот-космонавт и вкусовые планеты с кольцами',
+        desc: 'Дружелюбный персонаж (кот в зеленой маске или пес-супергерой) в сочетании с летающими барашками, рыбками в скафандрах и планетами из лосося или мяса наглядно передает вкус без скучных стоковых фото.',
+        benefit: 'Высокий CTR карточки товара и отстройка от конкурентов.'
+      },
+      {
+        id: 4,
+        zone: 'Зона 4 • Рациональные триггеры',
+        title: 'Блок функциональных пиктограмм в кружочках',
+        desc: 'Лаконичные векторные иконки («Без ГМО», «Для шерсти», «Для желудка/пищеварения», «Контроль веса») переводят сложный состав на понятный язык выгод для заботливого владельца питомца.',
+        benefit: 'Снимает возражения покупателя при выборе корма.'
+      },
+      {
+        id: 5,
+        zone: 'Зона 5 • Навигационный подвал',
+        title: 'Контрастный фиолетовый блок с крупным весом (2 кг / 10 кг)',
+        desc: 'Нижняя плашка цвета глубокого космоса (#594189) заземляет композицию и несет крупную типографику фасовки «2 kg / 10 kg», которая не перекрывается плашками скидок на Ozon и Wildberries.',
+        benefit: 'Быстрая ориентация покупателя в объеме упаковки.'
+      }
+    ];
+
+    // =========================================================================
+    // 3. STATE MANAGEMENT
+    // =========================================================================
+    let state = {
+      leftId: 12,      // Default: #12 Пёс с Лапками (Новинка Split-Block)
+      rightId: 15,     // Default: #15 Пёс Подмигивающий без лапок (Новинка Split-Block)
+      sliderPos: 50,
+      compareMode: 'curtain', // 'curtain' | 'side'
+      isZoomed: true,         // Default zoomed-in slightly to showcase the pack nicely
+      activeFilter: 'all',
+      activeHotspot: 1,
+      calcPet: 'cat',
+      calcWeight: 4.5,
+      calcActivity: 1.0
+    };
+
+    // =========================================================================
+    // 4. INITIALIZATION & RENDERING
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      initSelectorsAndThumbs();
+      updateComparisonUI();
+      initDragComparison();
+      renderGallery();
+      renderHotspots();
+      updateCalculator();
+    });
+
+    function getDesignById(id) {
+      return designsData.find(d => d.id === Number(id)) || designsData[0];
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // =========================================================================
+    // 5. COMPARISON SLIDER LOGIC
+    // =========================================================================
+    function initSelectorsAndThumbs() {
+      const selectLeft = document.getElementById('selectLeft');
+      const selectRight = document.getElementById('selectRight');
+      const thumbsLeft = document.getElementById('thumbsLeft');
+      const thumbsRight = document.getElementById('thumbsRight');
+
+      selectLeft.innerHTML = '';
+      selectRight.innerHTML = '';
+      thumbsLeft.innerHTML = '';
+      thumbsRight.innerHTML = '';
+
+      designsData.forEach(d => {
+        // Dropdown options
+        const optL = document.createElement('option');
+        optL.value = d.id;
+        optL.textContent = `#${d.id} — ${d.shortTitle} • ${d.flavor}`;
+        selectLeft.appendChild(optL);
+
+        const optR = document.createElement('option');
+        optR.value = d.id;
+        optR.textContent = `#${d.id} — ${d.shortTitle} • ${d.flavor}`;
+        selectRight.appendChild(optR);
+
+        // Mini clickable thumbnails
+        const thumbL = document.createElement('button');
+        thumbL.type = 'button';
+        thumbL.id = `thumb-left-${d.id}`;
+        thumbL.title = `#${d.id} ${d.shortTitle}`;
+        thumbL.onclick = () => onSelectChange('left', d.id);
+        thumbL.className = 'aspect-square rounded-xl overflow-hidden border-2 border-spacePurple-dark bg-white relative transition-all hover:scale-105';
+        thumbL.innerHTML = `
+          <img src="${d.file}" alt="#${d.id}" class="w-full h-full object-cover scale-150" />
+          <span class="absolute bottom-0 right-0 px-1 text-[9px] font-black bg-spacePurple-dark text-white rounded-tl">#${d.id}</span>
+        `;
+        thumbsLeft.appendChild(thumbL);
+
+        const thumbR = document.createElement('button');
+        thumbR.type = 'button';
+        thumbR.id = `thumb-right-${d.id}`;
+        thumbR.title = `#${d.id} ${d.shortTitle}`;
+        thumbR.onclick = () => onSelectChange('right', d.id);
+        thumbR.className = 'aspect-square rounded-xl overflow-hidden border-2 border-spacePurple-dark bg-white relative transition-all hover:scale-105';
+        thumbR.innerHTML = `
+          <img src="${d.file}" alt="#${d.id}" class="w-full h-full object-cover scale-150" />
+          <span class="absolute bottom-0 right-0 px-1 text-[9px] font-black bg-spacePurple-dark text-white rounded-tl">#${d.id}</span>
+        `;
+        thumbsRight.appendChild(thumbR);
+      });
+    }
+
+    function onSelectChange(side, val) {
+      if (side === 'left') {
+        state.leftId = Number(val);
+      } else {
+        state.rightId = Number(val);
+      }
+      updateComparisonUI();
+    }
+
+    function setComparisonPair(leftId, rightId, clickedBtn = null) {
+      state.leftId = Number(leftId);
+      state.rightId = Number(rightId);
+
+      if (clickedBtn) {
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+          btn.classList.remove('bg-limePack', 'shadow-cartoon-sm');
+          btn.classList.add('bg-milkWhite');
+        });
+        clickedBtn.classList.remove('bg-milkWhite');
+        clickedBtn.classList.add('bg-limePack', 'shadow-cartoon-sm');
+      }
+
+      updateComparisonUI();
+    }
+
+    function swapComparisonPair() {
+      const temp = state.leftId;
+      state.leftId = state.rightId;
+      state.rightId = temp;
+      updateComparisonUI();
+    }
+
+    function pickRandomComparison() {
+      const first = Math.floor(Math.random() * designsData.length) + 1;
+      let second = Math.floor(Math.random() * designsData.length) + 1;
+      while (second === first) {
+        second = Math.floor(Math.random() * designsData.length) + 1;
+      }
+      setComparisonPair(first, second);
+      scrollToSection('section-compare');
+    }
+
+    function updateSliderPosition(val) {
+      const clamped = Math.max(0, Math.min(100, Number(val)));
+      state.sliderPos = clamped;
+
+      const imgLeft = document.getElementById('imgLeft');
+      const divider = document.getElementById('sliderDivider');
+      const rangeInput = document.getElementById('compareRangeInput');
+      const percentText = document.getElementById('sliderPercentText');
+
+      imgLeft.style.clipPath = `inset(0 ${100 - clamped}% 0 0)`;
+      divider.style.left = `${clamped}%`;
+      rangeInput.value = clamped;
+      percentText.textContent = `${Math.round(clamped)}%`;
+    }
+
+    function initDragComparison() {
+      const stage = document.getElementById('compareStage');
+      let isDragging = false;
+
+      const calculatePercent = (clientX) => {
+        const rect = stage.getBoundingClientRect();
+        const relX = clientX - rect.left;
+        const pct = (relX / rect.width) * 100;
+        updateSliderPosition(pct);
+      };
+
+      stage.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        calculatePercent(e.clientX);
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        calculatePercent(e.clientX);
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      stage.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+          calculatePercent(e.touches[0].clientX);
+        }
+      }, { passive: true });
+
+      stage.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          calculatePercent(e.touches[0].clientX);
+        }
+      }, { passive: true });
+    }
+
+    function setCompareMode(mode) {
+      state.compareMode = mode;
+      const curtainWrapper = document.getElementById('curtainStageWrapper');
+      const sideWrapper = document.getElementById('sideBySideWrapper');
+      const btnCurtain = document.getElementById('modeCurtainBtn');
+      const btnSide = document.getElementById('modeSideBtn');
+
+      if (mode === 'curtain') {
+        curtainWrapper.classList.remove('hidden');
+        sideWrapper.classList.add('hidden');
+        btnCurtain.className = 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-spacePurple text-white transition-all';
+        btnSide.className = 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold text-spacePurple-dark hover:bg-limePack/30 transition-all';
+      } else {
+        curtainWrapper.classList.add('hidden');
+        sideWrapper.classList.remove('hidden');
+        btnSide.className = 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-spacePurple text-white transition-all';
+        btnCurtain.className = 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold text-spacePurple-dark hover:bg-limePack/30 transition-all';
+      }
+    }
+
+    function togglePackZoom() {
+      state.isZoomed = !state.isZoomed;
+      const targets = document.querySelectorAll('.pack-zoom-target');
+      const zoomText = document.getElementById('zoomText');
+      targets.forEach(img => {
+        if (state.isZoomed) {
+          img.classList.remove('scale-100');
+          img.classList.add('scale-125');
+        } else {
+          img.classList.remove('scale-125');
+          img.classList.add('scale-100');
+        }
+      });
+      zoomText.textContent = state.isZoomed ? 'Весь студийный кадр' : 'Крупный план пачки';
+    }
+
+    function updateComparisonUI() {
+      const dA = getDesignById(state.leftId);
+      const dB = getDesignById(state.rightId);
+
+      // Update selects
+      document.getElementById('selectLeft').value = dA.id;
+      document.getElementById('selectRight').value = dB.id;
+
+      // Update active thumbnail borders
+      designsData.forEach(d => {
+        const tL = document.getElementById(`thumb-left-${d.id}`);
+        const tR = document.getElementById(`thumb-right-${d.id}`);
+        if (tL) {
+          tL.className = d.id === dA.id
+            ? 'aspect-square rounded-xl overflow-hidden border-3 border-2 border-spacePurple-dark ring-4 ring-limePack-vibrant bg-white relative scale-105 z-10 transition-all'
+            : 'aspect-square rounded-xl overflow-hidden border border-spacePurple-dark/40 opacity-75 hover:opacity-100 bg-white relative transition-all';
+        }
+        if (tR) {
+          tR.className = d.id === dB.id
+            ? 'aspect-square rounded-xl overflow-hidden border-3 border-2 border-spacePurple-dark ring-4 ring-spacePurple bg-white relative scale-105 z-10 transition-all'
+            : 'aspect-square rounded-xl overflow-hidden border border-spacePurple-dark/40 opacity-75 hover:opacity-100 bg-white relative transition-all';
+        }
+      });
+
+      // Update images and labels
+      document.getElementById('imgLeft').src = dA.file;
+      document.getElementById('imgRight').src = dB.file;
+      document.getElementById('imgLeftSide').src = dA.file;
+      document.getElementById('imgRightSide').src = dB.file;
+
+      document.getElementById('leftBadgeMeta').textContent = `${dA.petLabel} • ${dA.weightLabel}`;
+      document.getElementById('rightBadgeMeta').textContent = `${dB.petLabel} • ${dB.weightLabel}`;
+
+      document.getElementById('stageLabelLeft').textContent = `#${dA.id} ${dA.shortTitle}`;
+      document.getElementById('stageLabelRight').textContent = `#${dB.id} ${dB.shortTitle}`;
+      document.getElementById('sideCaptionLeft').textContent = `#${dA.id} — ${dA.shortTitle}`;
+      document.getElementById('sideCaptionRight').textContent = `#${dB.id} — ${dB.shortTitle}`;
+
+      // Update Analytics Right Panel Titles
+      document.getElementById('statTitleA').textContent = `#${dA.id} ${dA.shortTitle}`;
+      document.getElementById('statSubA').textContent = `${dA.flavorBadge} • ${dA.weightLabel}`;
+      document.getElementById('statTitleB').textContent = `#${dB.id} ${dB.shortTitle}`;
+      document.getElementById('statSubB').textContent = `${dB.flavorBadge} • ${dB.weightLabel}`;
+
+      // Dynamic Difference Summary
+      const diffEl = document.getElementById('pairDiffSummary');
+      const pairKey = [dA.id, dB.id].sort((a, b) => a - b).join('-');
+      const customPairNotes = {
+        '12-15': 'Тест деталей маскота: в #12 пес держит белые лапки прямо на границе сиреневого блока на сливочно-лаймовом фоне, а в #15 — классический портрет без лапок на чисто белом фоне.',
+        '11-14': 'Парная линейка 10 кг на белом фоне с сиреневым подвалом: #11 (Кот в зеленой маске с закрытыми глазами) идеально встает на полку рядом с #14 (Подмигивающий пес).',
+        '14-15': 'Нюансное A/B сравнение паттерна звезд на белом фоне: в #14 звездочки темно-фиолетовые (под контур ушей), а в #15 — ярко-зеленые (под цвет логотипа PET STAR).',
+        '15-16': 'Тест «воздуха» на белом фоне 10 кг: #15 содержит россыпь зеленых звезд по бокам от ушей, а #16 (Ультра-Чистый) оставляет только 3 искры около логотипа.',
+        '14-16': 'Сравнение контрастного звездного паттерна (#14 с фиолетовыми искрами) и ультра-чистого белого поля (#16 без боковых звезд).',
+        '13-17': 'A/B тест фасовки 2 кг для собак: в #13 по фисташковому фону рассыпаны зеленые звездочки и точки, а в #17 боковой фон полностью чистый, со светящимися белыми искрами только у логотипа.',
+        '10-11': 'Эволюция макро-маскота кошки 10 кг: #10 полностью залит ночным темно-фиолетовым цветом, тогда как #11 открывает белый верх с зеленым логотипом и сиреневым подвалом.',
+        '3-4': 'Единая модульная композиция с ракетой: меняется маскот (Кот vs Пёс) и вкусовая планета (Лосось vs Ягненок).',
+        '1-2': 'Парная серия «Супергерой в полный рост»: #1 (Пёс и космо-овечки) против #2 (Кот и космо-рыбки).'
+      };
+
+      if (dA.id === dB.id) {
+        diffEl.textContent = 'Выбран один и тот же дизайн слева и справа. Выберите другой концепт из 17 вариантов для сравнения отличий!';
+      } else if (customPairNotes[pairKey]) {
+        diffEl.textContent = customPairNotes[pairKey];
+      } else if (dA.series === dB.series) {
+        diffEl.textContent = `Сравнение внутри серии «${dA.series}»: #${dA.id} (${dA.bgColor}) против #${dB.id} (${dB.bgColor}). Фасовка: ${dA.weightLabel} vs ${dB.weightLabel}.`;
+      } else {
+        diffEl.textContent = `Сравнение разных концепций: «${dA.series}» (#${dA.id}, ${dA.weightLabel}) против «${dB.series}» (#${dB.id}, ${dB.weightLabel}). Обратите внимание на подачу маскота, цвет фона и нижний блок.`;
+      }
+
+      // Render Visual Metrics Dual Bars
+      const metrics = [
+        { label: 'Заметность на полке и маркетплейсе (CTR)', valA: dA.shelfImpact, valB: dB.shelfImpact },
+        { label: 'Читаемость инфографики и УТП', valA: dA.infographicClarity, valB: dB.infographicClarity },
+        { label: 'Чистота композиции и «воздух»', valA: dA.cleanAirScore, valB: dB.cleanAirScore },
+        { label: 'Акцент на маскоте и зрительный контакт', valA: dA.mascotFocus, valB: dB.mascotFocus }
+      ];
+
+      const metricsContainer = document.getElementById('designMetricsContainer');
+      metricsContainer.innerHTML = metrics.map(m => `
+        <div class="space-y-1">
+          <div class="flex justify-between text-xs font-extrabold text-spacePurple-dark">
+            <span>${m.label}</span>
+            <span class="flex items-center gap-1.5">
+              <span class="px-1.5 py-0.5 rounded bg-limePack text-spacePurple-dark border border-spacePurple-dark/40">А: ${m.valA}%</span>
+              <span class="px-1.5 py-0.5 rounded bg-spacePurple text-white">Б: ${m.valB}%</span>
+            </span>
+          </div>
+          <div class="grid grid-cols-2 gap-1.5 h-3">
+            <div class="bg-milkWhite rounded-full overflow-hidden border border-spacePurple-dark p-0.5">
+              <div class="h-full bg-limePack-vibrant rounded-full transition-all duration-500" style="width: ${m.valA}%"></div>
+            </div>
+            <div class="bg-milkWhite rounded-full overflow-hidden border border-spacePurple-dark p-0.5">
+              <div class="h-full bg-spacePurple rounded-full transition-all duration-500" style="width: ${m.valB}%"></div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Render Nutrition & Specs Table
+      const rows = [
+        { name: 'Целевой питомец', a: dA.petLabel, b: dB.petLabel },
+        { name: 'Фасовка пачки', a: dA.weightLabel, b: dB.weightLabel },
+        { name: 'Основной вкус', a: dA.flavor, b: dB.flavor },
+        { name: 'Белки / Жиры', a: `${dA.protein} / ${dA.fat}`, b: `${dB.protein} / ${dB.fat}` },
+        { name: 'Омега-3/6 и Клетчатка', a: `${dA.omega} / ${dA.fiber}`, b: `${dB.omega} / ${dB.fiber}` },
+        { name: 'Инфо-иконки', a: dA.iconsCount, b: dB.iconsCount }
+      ];
+
+      document.getElementById('nutritionComparisonRows').innerHTML = rows.map(r => `
+        <div class="grid grid-cols-12 items-center py-1.5 border-b border-spacePurple-dark/10 last:border-none gap-2">
+          <div class="col-span-4 font-bold text-spacePurple text-xs">${r.name}</div>
+          <div class="col-span-4 font-display font-extrabold text-spacePurple-dark bg-limePack/35 px-2 py-1 rounded-lg text-center truncate" title="${r.a}">${r.a}</div>
+          <div class="col-span-4 font-display font-extrabold text-spacePurple-dark bg-spacePurple/15 px-2 py-1 rounded-lg text-center truncate" title="${r.b}">${r.b}</div>
+        </div>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 6. GALLERY & FILTER LOGIC
+    // =========================================================================
+    function filterGallery(filterKey, btnEl) {
+      state.activeFilter = filterKey;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('bg-spacePurple', 'text-white', 'shadow-cartoon-sm');
+        b.classList.add('bg-white', 'text-spacePurple-dark');
+      });
+      if (btnEl) {
+        btnEl.classList.remove('bg-white', 'text-spacePurple-dark');
+        btnEl.classList.add('bg-spacePurple', 'text-white', 'shadow-cartoon-sm');
+      }
+      renderGallery();
+    }
+
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      const filtered = designsData.filter(d => {
+        if (state.activeFilter === 'all') return true;
+        if (state.activeFilter === 'split') return d.isSplitBlock === true;
+        if (state.activeFilter === 'dog' || state.activeFilter === 'cat') return d.pet === state.activeFilter;
+        if (state.activeFilter === '2kg' || state.activeFilter === '10kg') return d.weight === state.activeFilter;
+        return true;
+      });
+
+      grid.innerHTML = filtered.map(d => {
+        const isLeft = d.id === state.leftId;
+        const isRight = d.id === state.rightId;
+        return `
+          <div class="bg-white rounded-3xl border-3 border-2 border-spacePurple-dark shadow-cartoon flex flex-col justify-between overflow-hidden hover:-translate-y-1 transition-all">
+            <div>
+              <!-- Image preview clickable for modal -->
+              <div onclick="openDesignModal(${d.id})" class="cursor-pointer relative aspect-square bg-[#ECEEE6] overflow-hidden border-b-2 border-spacePurple-dark group">
+                <img src="${d.file}" alt="${d.title}" class="w-full h-full object-cover scale-125 group-hover:scale-[1.35] transition-transform duration-300" />
+                <div class="absolute top-2.5 left-2.5 flex flex-wrap items-center gap-1.5">
+                  <span class="px-2.5 py-0.5 rounded-full bg-spacePurple-dark text-starYellow font-display font-black text-xs">
+                    #${d.id}
+                  </span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-white/95 border border-spacePurple-dark text-spacePurple-dark font-extrabold text-xs">
+                    ${d.weightLabel}
+                  </span>
+                  ${d.isSplitBlock ? '<span class="px-2 py-0.5 rounded-full bg-lavenderBlock text-white border border-spacePurple-dark font-extrabold text-[10px] uppercase">NEW Split-Block</span>' : ''}
+                </div>
+                <div class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-xl bg-white/90 border border-spacePurple-dark text-[11px] font-extrabold text-spacePurple-dark">
+                  ${d.petLabel}
+                </div>
+              </div>
+
+              <!-- Card Text -->
+              <div class="p-4">
+                <div class="text-[11px] font-black uppercase ${d.isSplitBlock ? 'text-lavenderBlock-dark' : 'text-salmonCoral-dark'} tracking-wide">${d.series}</div>
+                <h3 onclick="openDesignModal(${d.id})" class="cursor-pointer font-display font-black text-base text-spacePurple-dark hover:text-spacePurple mt-0.5 leading-snug">
+                  ${d.shortTitle}
+                </h3>
+                <p class="text-xs text-spacePurple mt-1.5 line-clamp-3 leading-relaxed">
+                  ${d.description}
+                </p>
+              </div>
+            </div>
+
+            <!-- Action Buttons: Send to Left or Right of Comparison Slider -->
+            <div class="p-3 pt-0 space-y-1.5">
+              <div class="grid grid-cols-2 gap-1.5">
+                <button onclick="sendToCompare(${d.id}, 'left')" class="py-1.5 px-2 rounded-xl font-display font-extrabold text-xs border-2 border-spacePurple-dark transition-all ${isLeft ? 'bg-limePack text-spacePurple-dark shadow-cartoon-sm' : 'bg-limePack/25 hover:bg-limePack text-spacePurple-dark'}">
+                  ◀ На ползунок А
+                </button>
+                <button onclick="sendToCompare(${d.id}, 'right')" class="py-1.5 px-2 rounded-xl font-display font-extrabold text-xs border-2 border-spacePurple-dark transition-all ${isRight ? 'bg-spacePurple text-white shadow-cartoon-sm' : 'bg-spacePurple/15 hover:bg-spacePurple hover:text-white text-spacePurple-dark'}">
+                  На ползунок Б ▶
+                </button>
+              </div>
+              <button onclick="openDesignModal(${d.id})" class="w-full py-1.5 rounded-xl bg-milkWhite hover:bg-starYellow/60 text-spacePurple-dark font-bold text-xs border border-spacePurple-dark/40 transition-all">
+                🔍 Детальный разбор
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function sendToCompare(id, side) {
+      onSelectChange(side, id);
+      renderGallery();
+      scrollToSection('section-compare');
+    }
+
+    // =========================================================================
+    // 7. PACKAGING ANATOMY HOTSPOTS LOGIC
+    // =========================================================================
+    function renderHotspots() {
+      const container = document.getElementById('hotspotListContainer');
+      container.innerHTML = hotspotsData.map(h => {
+        const active = h.id === state.activeHotspot;
+        return `
+          <div onclick="selectHotspot(${h.id})" class="cursor-pointer rounded-2xl p-4 border-2 border-spacePurple-dark transition-all ${active ? 'bg-starYellow shadow-cartoon scale-[1.01]' : 'bg-white hover:bg-limePack/30'}">
+            <div class="flex items-start gap-3.5">
+              <div class="w-9 h-9 rounded-full shrink-0 font-display font-black text-base border-2 border-spacePurple-dark flex items-center justify-center ${active ? 'bg-spacePurple text-white' : 'bg-limePack text-spacePurple-dark'}">
+                ${h.id}
+              </div>
+              <div class="space-y-1">
+                <div class="text-[11px] font-black uppercase tracking-wider ${active ? 'text-spacePurple-dark' : 'text-spacePurple'}">${h.zone}</div>
+                <h4 class="font-display font-black text-base sm:text-lg text-spacePurple-dark">${h.title}</h4>
+                <p class="text-xs sm:text-sm text-spacePurple-dark/90 leading-relaxed">${h.desc}</p>
+                <div class="pt-1 text-xs font-extrabold text-spacePurple-dark flex items-center gap-1.5">
+                  <span>✅ Маркетинговый эффект:</span>
+                  <span class="underline">${h.benefit}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Update pins on pack image
+      hotspotsData.forEach(h => {
+        const btn = document.getElementById(`hotspotBtn-${h.id}`);
+        if (btn) {
+          if (h.id === state.activeHotspot) {
+            btn.classList.remove('bg-white', 'text-spacePurple-dark');
+            btn.classList.add('bg-starYellow', 'text-spacePurple-dark', 'scale-125');
+          } else {
+            btn.classList.remove('bg-starYellow', 'scale-125');
+            btn.classList.add('bg-white', 'text-spacePurple-dark');
+          }
+        }
+      });
+    }
+
+    function selectHotspot(id) {
+      state.activeHotspot = Number(id);
+      renderHotspots();
+    }
+
+    function setAnatomyImage(filename, btnEl) {
+      document.getElementById('anatomyPackImg').src = filename;
+      document.querySelectorAll('.anat-pack-btn').forEach(b => {
+        b.classList.remove('bg-limePack');
+        b.classList.add('bg-white');
+      });
+      if (btnEl) {
+        btnEl.classList.remove('bg-white');
+        btnEl.classList.add('bg-limePack');
+      }
+    }
+
+    // =========================================================================
+    // 8. DAILY PORTION CALCULATOR LOGIC
+    // =========================================================================
+    function setCalcPet(petType) {
+      state.calcPet = petType;
+      const range = document.getElementById('petWeightRange');
+      const catBtn = document.getElementById('calcCatBtn');
+      const dogBtn = document.getElementById('calcDogBtn');
+
+      if (petType === 'cat') {
+        range.min = 1;
+        range.max = 12;
+        range.step = 0.5;
+        range.value = 4.5;
+        document.getElementById('weightMinLabel').textContent = '1 кг (Котёнок)';
+        document.getElementById('weightMidLabel').textContent = '5 кг (Взрослый кот)';
+        document.getElementById('weightMaxLabel').textContent = '12 кг (Мейн-кун)';
+        catBtn.className = 'px-4 py-2 rounded-xl font-display font-black text-sm bg-spacePurple text-white shadow-cartoon-sm transition-all';
+        dogBtn.className = 'px-4 py-2 rounded-xl font-display font-black text-sm text-spacePurple-dark hover:bg-white/70 transition-all';
+      } else {
+        range.min = 2;
+        range.max = 45;
+        range.step = 1;
+        range.value = 14;
+        document.getElementById('weightMinLabel').textContent = '2 кг (Мини-порода)';
+        document.getElementById('weightMidLabel').textContent = '15 кг (Средняя собака)';
+        document.getElementById('weightMaxLabel').textContent = '45 кг (Крупная порода)';
+        dogBtn.className = 'px-4 py-2 rounded-xl font-display font-black text-sm bg-spacePurple text-white shadow-cartoon-sm transition-all';
+        catBtn.className = 'px-4 py-2 rounded-xl font-display font-black text-sm text-spacePurple-dark hover:bg-white/70 transition-all';
+      }
+      updateCalculator();
+    }
+
+    function setCalcActivity(mult, btnEl) {
+      state.calcActivity = mult;
+      document.querySelectorAll('.calc-act-btn').forEach(b => {
+        b.classList.remove('bg-limePack', 'shadow-cartoon-sm');
+        b.classList.add('bg-white');
+      });
+      if (btnEl) {
+        btnEl.classList.remove('bg-white');
+        btnEl.classList.add('bg-limePack', 'shadow-cartoon-sm');
+      }
+      updateCalculator();
+    }
+
+    function updateCalculator() {
+      const weight = parseFloat(document.getElementById('petWeightRange').value);
+      state.calcWeight = weight;
+      document.getElementById('petWeightValue').textContent = `${weight} кг`;
+
+      // Base daily norm calculation
+      let baseGrams = state.calcPet === 'cat'
+        ? Math.round(weight * 13.5)
+        : Math.round(Math.pow(weight, 0.75) * 28);
+
+      const finalGrams = Math.max(20, Math.round(baseGrams * state.calcActivity));
+      const days2kg = Math.max(1, Math.round(2000 / finalGrams));
+      const days10kg = Math.max(1, Math.round(10000 / finalGrams));
+
+      document.getElementById('calcGramsPerDay').textContent = `${finalGrams} г / день`;
+      document.getElementById('calcDays2kg').textContent = `${days2kg} дн.`;
+      document.getElementById('calcDays10kg').textContent = `${days10kg} дн.`;
+    }
+
+    // =========================================================================
+    // 9. MODAL INSPECTION LOGIC
+    // =========================================================================
+    function openDesignModal(id) {
+      const d = getDesignById(id);
+      document.getElementById('modalIdBadge').textContent = `#${d.id}`;
+      document.getElementById('modalTitle').textContent = d.title;
+      document.getElementById('modalImg').src = d.file;
+      document.getElementById('modalDesc').textContent = d.description;
+
+      document.getElementById('modalTags').innerHTML = `
+        <span class="px-3 py-1 rounded-full bg-limePack text-spacePurple-dark font-extrabold text-xs border border-spacePurple-dark">${d.petLabel}</span>
+        <span class="px-3 py-1 rounded-full bg-starYellow text-spacePurple-dark font-extrabold text-xs border border-spacePurple-dark">Фасовка ${d.weightLabel}</span>
+        <span class="px-3 py-1 rounded-full bg-salmonCoral text-white font-extrabold text-xs border border-spacePurple-dark">${d.flavorBadge}</span>
+      `;
+
+      document.getElementById('modalStats').innerHTML = `
+        <div class="flex justify-between border-b border-spacePurple-dark/10 pb-1.5"><span>Цветовая схема:</span><strong>${d.bgColor}</strong></div>
+        <div class="flex justify-between border-b border-spacePurple-dark/10 pb-1.5"><span>Инфографика:</span><strong>${d.iconsCount}</strong></div>
+        <div class="flex justify-between border-b border-spacePurple-dark/10 pb-1.5"><span>Белки / Жиры / Омега:</span><strong>${d.protein} / ${d.fat} / ${d.omega}</strong></div>
+        <div class="flex justify-between"><span>Заметность на полке (CTR):</span><strong class="text-salmonCoral-dark">${d.shelfImpact}% из 100%</strong></div>
+      `;
+
+      document.getElementById('modalSendLeftBtn').onclick = () => {
+        closeDesignModal();
+        sendToCompare(d.id, 'left');
+      };
+      document.getElementById('modalSendRightBtn').onclick = () => {
+        closeDesignModal();
+        sendToCompare(d.id, 'right');
+      };
+
+      document.getElementById('designModal').classList.remove('hidden');
+    }
+
+    function closeDesignModal() {
+      document.getElementById('designModal').classList.add('hidden');
+    }
+
+    // Close modal on backdrop click or Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDesignModal();
+    });
+  </script>
+</body>
+</html>
