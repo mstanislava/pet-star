@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>PET STAR — Сравнение и каталог 20 дизайнов упаковки</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            limePack: {
+              light: '#E3F1BE',
+              DEFAULT: '#B8D478',
+              vibrant: '#94BD46',
+              dark: '#6C8E2B'
+            },
+            spacePurple: {
+              light: '#7B61B3',
+              DEFAULT: '#594189',
+              dark: '#3E2A69',
+              deep: '#281A47'
+            },
+            lavenderBlock: {
+              light: '#B996C7',
+              DEFAULT: '#9B72AA',
+              dark: '#7A5289'
+            },
+            milkWhite: '#F8FAF2',
+            salmonCoral: {
+              DEFAULT: '#F27D52',
+              dark: '#D95B2E'
+            },
+            starYellow: {
+              DEFAULT: '#FFD154'
+            }
+          },
+          fontFamily: {
+            display: ['Nunito', 'sans-serif'],
+            sans: ['Rubik', 'sans-serif']
+          },
+          boxShadow: {
+            'cartoon': '0 5px 0 0 #3E2A69',
+            'cartoon-sm': '0 3px 0 0 #3E2A69',
+            'cartoon-lg': '0 8px 0 0 #3E2A69'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html, body {
+      background-color: #F8FAF2;
+      color: #3E2A69;
+      font-family: 'Rubik', sans-serif;
+      overflow-x: hidden;
+      width: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .cosmic-bg {
+      background-color: #F8FAF2;
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(184, 212, 120, 0.25) 0%, transparent 25%),
+        radial-gradient(circle at 90% 15%, rgba(89, 65, 137, 0.12) 0%, transparent 25%);
+    }
+
+    /* Smart container query: keeps 100% of bag height visible on all screens
+       while cropping empty side margins on mobile and square cards */
+    .stage-media {
+      container-type: size;
+    }
+    .stage-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+    @container (max-aspect-ratio: 16/9) {
+      .stage-media img {
+        object-fit: cover;
+      }
+    }
+
+    /* Custom Range Slider */
+    input[type=range].pet-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+      height: 30px;
+      touch-action: pan-y;
+    }
+    input[type=range].pet-slider::-webkit-slider-runnable-track {
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #94BD46 0%, #594189 100%);
+      border: 2px solid #3E2A69;
+    }
+    input[type=range].pet-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #FFD154;
+      border: 3px solid #3E2A69;
+      box-shadow: 0 2px 0 #3E2A69;
+      margin-top: -10px;
+      transition: transform 0.15s ease;
+    }
+    input[type=range].pet-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.12);
+    }
+    input[type=range].pet-slider::-moz-range-track {
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #94BD46 0%, #594189 100%);
+      border: 2px solid #3E2A69;
+    }
+    input[type=range].pet-slider::-moz-range-thumb {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #FFD154;
+      border: 3px solid #3E2A69;
+      box-shadow: 0 2px 0 #3E2A69;
+    }
+
+    .compare-stage {
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-y;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="cosmic-bg min-h-screen selection:bg-limePack selection:text-spacePurple-dark">
+
+  <!-- ======================= 1. FULL-SCREEN COMPARISON WORKSPACE ======================= -->
+  <section id="section-compare" class="w-full max-w-[1800px] mx-auto px-2.5 sm:px-5 py-2.5 sm:py-4 lg:h-[100dvh] lg:min-h-[660px] flex flex-col justify-between gap-2.5 sm:gap-3">
+    
+    <!-- Minimal Top Selector Bar -->
+    <div class="shrink-0 bg-white rounded-2xl px-3 py-2 border-2 border-spacePurple-dark shadow-cartoon-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-2">
+      
+      <!-- Brand Title & Catalog Jump -->
+      <div class="flex items-center justify-between md:justify-start gap-3 shrink-0">
+        <div class="flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-spacePurple text-starYellow font-display font-black text-base flex items-center justify-center border border-spacePurple-dark">★</span>
+          <span class="font-display font-black text-lg sm:text-xl tracking-tight text-spacePurple-dark">PET STAR</span>
+        </div>
+        <a href="#section-gallery" class="px-3 py-1 rounded-xl bg-milkWhite hover:bg-starYellow text-spacePurple-dark font-display font-extrabold text-xs border-2 border-spacePurple-dark transition-colors">
+          Все 20 пачек ↓
+        </a>
+      </div>
+
+      <!-- Compact Dropdown Selectors for A and B -->
+      <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-4xl">
+        <div class="flex items-center gap-1.5 bg-limePack/30 px-2.5 py-1 rounded-xl border border-spacePurple-dark">
+          <span class="px-2 py-0.5 rounded bg-limePack-vibrant text-white font-display font-black text-[11px] uppercase shrink-0">А</span>
+          <select id="selectLeft" onchange="onSelectChange('left', this.value)" class="w-full bg-transparent font-display font-extrabold text-xs sm:text-sm text-spacePurple-dark focus:outline-none cursor-pointer truncate">
+          </select>
+        </div>
+
+        <div class="flex items-center gap-1.5 bg-spacePurple/10 px-2.5 py-1 rounded-xl border border-spacePurple-dark">
+          <span class="px-2 py-0.5 rounded bg-spacePurple text-white font-display font-black text-[11px] uppercase shrink-0">Б</span>
+          <select id="selectRight" onchange="onSelectChange('right', this.value)" class="w-full bg-transparent font-display font-extrabold text-xs sm:text-sm text-spacePurple-dark focus:outline-none cursor-pointer truncate">
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Main Two-Column Comparison Block (Fits Full Screen on Desktop) -->
+    <div class="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 items-stretch">
+      
+      <!-- LEFT COLUMN: Huge Interactive Curtain Stage -->
+      <div class="lg:col-span-7 xl:col-span-8 bg-white rounded-3xl p-3 sm:p-4 border-4 border-spacePurple-dark shadow-cartoon-lg flex flex-col justify-between gap-2.5 min-h-0">
+        
+        <!-- Curtain Stage: Expands to fill all vertical height on desktop, tall portrait on mobile -->
+        <div id="compareStage" class="compare-stage stage-media relative w-full h-[58dvh] sm:h-[65dvh] lg:h-auto lg:flex-1 lg:min-h-0 rounded-2xl overflow-hidden border-2 border-spacePurple-dark bg-[#EFEFE9] cursor-ew-resize select-none">
+          
+          <!-- Image B (Right / Underneath Layer) -->
+          <img id="imgRight" src="Gemini_Generated_Image_qifvhqqifvhqqifv.jpg" alt="Дизайн Б" class="absolute inset-0 pointer-events-none" />
+
+          <!-- Image A (Left / Clipped Layer on Top) -->
+          <img id="imgLeft" src="Gemini_Generated_Image_oluibeoluibeolui.jpg" alt="Дизайн А" class="absolute inset-0 pointer-events-none" style="clip-path: inset(0 50% 0 0);" />
+
+          <!-- Floating Top-Left Label -->
+          <div class="absolute top-2.5 left-2.5 z-20 pointer-events-none max-w-[44%]">
+            <div class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-limePack/95 backdrop-blur-sm border-2 border-spacePurple-dark shadow-cartoon-sm">
+              <div class="text-[9px] sm:text-[10px] font-black uppercase text-spacePurple-dark opacity-80">Слева • А</div>
+              <div id="stageLabelLeft" class="font-display font-black text-[11px] sm:text-sm text-spacePurple-dark truncate">#18 Пёс на Космо-Сёрфе</div>
+            </div>
+          </div>
+
+          <!-- Floating Top-Right Label -->
+          <div class="absolute top-2.5 right-2.5 z-20 pointer-events-none max-w-[44%] text-right">
+            <div class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-spacePurple/95 backdrop-blur-sm border-2 border-spacePurple-dark shadow-cartoon-sm text-white">
+              <div class="text-[9px] sm:text-[10px] font-black uppercase text-limePack">Справа • Б</div>
+              <div id="stageLabelRight" class="font-display font-black text-[11px] sm:text-sm truncate">#19 Пёс в Иллюминаторе (Белый)</div>
+            </div>
+          </div>
+
+          <!-- Vertical Divider Line & Handle -->
+          <div id="sliderDivider" class="absolute top-0 bottom-0 z-30 w-1 bg-spacePurple-dark pointer-events-none" style="left: 50%;">
+            <div class="absolute inset-y-0 -left-0.5 w-2 bg-starYellow border-x border-spacePurple-dark"></div>
+            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-starYellow border-4 border-spacePurple-dark shadow-cartoon flex items-center justify-center">
+              <svg class="w-6 h-6 text-spacePurple-dark" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Range Slider Control Bar -->
+        <div class="shrink-0 bg-milkWhite px-3 py-2 rounded-2xl border-2 border-spacePurple-dark flex items-center gap-3">
+          <span class="text-xs font-extrabold uppercase text-spacePurple-dark whitespace-nowrap flex items-center gap-1.5">
+            <span class="hidden sm:inline">Шторка:</span>
+            <strong id="sliderPercentText" class="px-2 py-0.5 rounded bg-starYellow border border-spacePurple-dark">50%</strong>
+          </span>
+          <input id="compareRangeInput" type="range" min="0" max="100" value="50" oninput="updateSliderPosition(this.value)" class="pet-slider w-full" aria-label="Положение шторки сравнения" />
+          <div class="flex items-center gap-1 shrink-0">
+            <button onclick="updateSliderPosition(15)" class="px-2 py-1 rounded-lg text-xs font-extrabold bg-white hover:bg-limePack border border-spacePurple-dark">А</button>
+            <button onclick="updateSliderPosition(50)" class="px-2 py-1 rounded-lg text-xs font-extrabold bg-starYellow border border-spacePurple-dark">50/50</button>
+            <button onclick="updateSliderPosition(85)" class="px-2 py-1 rounded-lg text-xs font-extrabold bg-white hover:bg-limePack border border-spacePurple-dark">Б</button>
+          </div>
+        </div>
+
+        <!-- Key Difference Summary Box -->
+        <div class="shrink-0 px-3.5 py-2.5 rounded-2xl bg-limePack/25 border-2 border-spacePurple-dark flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+          <div class="min-w-0">
+            <div class="text-[10px] font-extrabold uppercase text-spacePurple">Ключевое отличие выбранной пары:</div>
+            <p id="pairDiffSummary" class="text-xs sm:text-sm font-bold text-spacePurple-dark leading-snug line-clamp-2">
+              Сравнение новых белых концептов 10 кг: в #18 пес летит в полный рост на лаймовом космо-сёрфе, а в #19 сделан фокус на крупном портрете в круглом шлеме-иллюминаторе.
+            </p>
+          </div>
+          <button onclick="swapComparisonPair()" class="shrink-0 px-3 py-2 rounded-xl bg-white hover:bg-starYellow text-spacePurple-dark font-extrabold text-xs border-2 border-spacePurple-dark shadow-cartoon-sm transition-all text-center">
+            Поменять местами
+          </button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Synchronized Comparison Infographics -->
+      <div class="lg:col-span-5 xl:col-span-4 bg-white rounded-3xl p-4 sm:p-5 border-4 border-spacePurple-dark shadow-cartoon-lg flex flex-col justify-between gap-3 min-h-0 overflow-y-auto">
+        
+        <!-- Panel Header -->
+        <div class="flex items-center justify-between border-b-2 border-spacePurple-dark/15 pb-2 shrink-0">
+          <div>
+            <h2 class="font-display font-black text-lg sm:text-xl text-spacePurple-dark leading-tight">Инфографика сравнения</h2>
+            <p class="text-[11px] sm:text-xs text-spacePurple font-medium">Визуальные метрики дизайна и профиль корма</p>
+          </div>
+          <span class="px-2.5 py-0.5 rounded-full bg-limePack text-spacePurple-dark font-black text-[11px] border border-spacePurple-dark">LIVE</span>
+        </div>
+
+        <!-- Legend Cards for A and B -->
+        <div class="grid grid-cols-2 gap-2.5 shrink-0">
+          <div class="p-2.5 rounded-2xl bg-limePack/30 border-2 border-spacePurple-dark min-w-0">
+            <div class="text-[10px] font-black uppercase text-spacePurple">Образец А (Слева)</div>
+            <div id="statTitleA" class="font-display font-black text-xs sm:text-sm text-spacePurple-dark truncate mt-0.5">#18 Пёс на Космо-Сёрфе</div>
+            <div id="statSubA" class="text-[11px] font-bold text-spacePurple mt-0.5 truncate">Ягненок • 10 кг</div>
+          </div>
+          <div class="p-2.5 rounded-2xl bg-spacePurple/15 border-2 border-spacePurple-dark min-w-0">
+            <div class="text-[10px] font-black uppercase text-spacePurple">Образец Б (Справа)</div>
+            <div id="statTitleB" class="font-display font-black text-xs sm:text-sm text-spacePurple-dark truncate mt-0.5">#19 Пёс в Иллюминаторе</div>
+            <div id="statSubB" class="text-[11px] font-bold text-spacePurple mt-0.5 truncate">Ягненок • 10 кг</div>
+          </div>
+        </div>
+
+        <!-- Visual Design Metrics Bars -->
+        <div class="space-y-2.5 shrink-0" id="designMetricsContainer">
+          <!-- Populated dynamically by JS -->
+        </div>
+
+        <!-- Nutritional & Product Profile Comparison Table -->
+        <div class="bg-milkWhite rounded-2xl p-3 sm:p-3.5 border-2 border-spacePurple-dark space-y-2 shrink-0">
+          <div class="text-[11px] font-black uppercase text-spacePurple-dark flex items-center justify-between gap-2">
+            <span>Пищевой профиль и характеристики</span>
+            <span class="text-[10px] text-spacePurple font-bold shrink-0">На 100 г</span>
+          </div>
+          <div id="nutritionComparisonRows" class="space-y-1.5 text-xs">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================= 2. CLEAN LARGE-FORMAT GALLERY OF ALL 20 DESIGNS ======================= -->
+  <section id="section-gallery" class="py-10 sm:py-14 border-t-4 border-spacePurple-dark bg-milkWhite/60">
+    <div class="max-w-[1800px] mx-auto px-3 sm:px-6">
+      
+      <!-- Minimal Gallery Header & Filters -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 sm:mb-8">
+        <div>
+          <h2 class="font-display font-black text-2xl sm:text-3xl text-spacePurple-dark">
+            Все 20 дизайнов упаковки
+          </h2>
+          <p class="text-xs sm:text-sm text-spacePurple font-medium mt-0.5">
+            Нажмите на любую пачку для полноэкранного увеличения или выберите «А / Б» для сравнения на ползунке.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex sm:flex-wrap gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0" id="galleryFilters">
+          <button onclick="filterGallery('all', this)" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-spacePurple text-white shadow-cartoon-sm transition-all">
+            Все (20)
+          </button>
+          <button onclick="filterGallery('newWhite', this)" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            Новые Белые #18–#20 (3)
+          </button>
+          <button onclick="filterGallery('split', this)" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            Серия Split-Block (7)
+          </button>
+          <button onclick="filterGallery('dog', this)" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            Для собак (12)
+          </button>
+          <button onclick="filterGallery('cat', this)" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            Для кошек (8)
+          </button>
+          <button onclick="filterGallery('2kg', this)" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            2 кг (10)
+          </button>
+          <button onclick="filterGallery('10kg', this)" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl font-display font-extrabold text-xs sm:text-sm border-2 border-spacePurple-dark bg-white hover:bg-limePack/40 text-spacePurple-dark transition-all">
+            10 кг (10)
+          </button>
+        </div>
+      </div>
+
+      <!-- Large Cards Grid (3 columns on desktop so each bag is huge and clear) -->
+      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        <!-- Populated dynamically -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================= 3. FULLSCREEN LIGHTBOX MODAL ======================= -->
+  <div id="designModal" onclick="handleModalBackdropClick(event)" class="fixed inset-0 z-50 hidden bg-spacePurple-deep/85 backdrop-blur-sm flex items-center justify-center p-2.5 sm:p-5">
+    <div class="bg-milkWhite rounded-3xl max-w-5xl w-full max-h-[94dvh] flex flex-col border-4 border-spacePurple-dark shadow-cartoon-lg overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="bg-spacePurple text-white px-4 sm:px-6 py-3 border-b-4 border-spacePurple-dark flex items-center justify-between gap-2 shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <span id="modalIdBadge" class="px-2.5 py-0.5 rounded-lg bg-limePack text-spacePurple-dark font-display font-black text-xs sm:text-sm shrink-0">#1</span>
+          <h3 id="modalTitle" class="font-display font-black text-sm sm:text-lg truncate">Концепт упаковки</h3>
+        </div>
+        <button onclick="closeDesignModal()" class="w-8 h-8 shrink-0 rounded-xl bg-white/15 hover:bg-salmonCoral text-white font-black flex items-center justify-center border border-white/30">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body with Maximized Packaging Image -->
+      <div class="p-4 sm:p-6 flex-1 min-h-0 flex flex-col justify-between gap-4 overflow-y-auto">
+        <div class="stage-media w-full h-[62dvh] sm:h-[68dvh] rounded-2xl overflow-hidden border-2 border-spacePurple-dark bg-[#EFEFE9] flex items-center justify-center">
+          <img id="modalImg" src="" alt="Крупный просмотр" />
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <p id="modalDesc" class="text-xs sm:text-sm text-spacePurple-dark font-medium leading-snug"></p>
+          <div class="grid grid-cols-2 gap-2 shrink-0">
+            <button id="modalSendLeftBtn" class="py-2 px-3.5 rounded-xl bg-limePack hover:bg-limePack-vibrant text-spacePurple-dark font-display font-black text-xs border-2 border-spacePurple-dark shadow-cartoon-sm">
+              ◀ В ползунок А
+            </button>
+            <button id="modalSendRightBtn" class="py-2 px-3.5 rounded-xl bg-spacePurple hover:bg-spacePurple-dark text-white font-display font-black text-xs border-2 border-spacePurple-dark shadow-cartoon-sm">
+              В ползунок Б ▶
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================= APPLICATION JAVASCRIPT ======================= -->
+  <script>
+    const designsData = [
+      {
+        id: 1,
+        file: 'Gemini_Generated_Image_trn0gitrn0gitrn0.jpg',
+        series: 'Сюжетный Супергерой',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Супер-Пёс и Космо-Овечки',
+        title: 'Супер-Пёс и Космо-Овечки (2 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: 'Ягненок',
+        bgColor: 'Лаймовый верх + Темно-фиолетовый подвал',
+        description: 'Сюжетная иллюстрация в полный рост: пес-супергерой в фиолетовом плаще и зеленом платке в окружении космо-овечек.',
+        shelfImpact: 92,
+        infographicClarity: 84,
+        cleanAirScore: 76,
+        mascotFocus: 88,
+        protein: '28%',
+        fat: '15%',
+        omega: '3.2%',
+        fiber: '3.0%',
+        iconsCount: '4 иконки в подвале'
+      },
+      {
+        id: 2,
+        file: 'Gemini_Generated_Image_5lpzd85lpzd85lpz.jpg',
+        series: 'Сюжетный Супергерой',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Супер-Кот и Космо-Рыбки',
+        title: 'Супер-Кот и Космо-Рыбки (2 кг)',
+        pet: 'cat',
+        petLabel: 'Для кошек',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Космический лосось',
+        flavorBadge: 'Лосось',
+        bgColor: 'Лаймовый верх + Темно-фиолетовый подвал',
+        description: 'Сюжетная иллюстрация в полный рост: кот-супергерой в зеленой маске и плаще в окружении космо-рыбок и лососевой планеты.',
+        shelfImpact: 93,
+        infographicClarity: 84,
+        cleanAirScore: 76,
+        mascotFocus: 89,
+        protein: '34%',
+        fat: '16%',
+        omega: '4.1%',
+        fiber: '2.5%',
+        iconsCount: '4 иконки в подвале'
+      },
+      {
+        id: 3,
+        file: 'Gemini_Generated_Image_ope8bfope8bfope8.jpg',
+        series: 'Космическая Ракета',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Кот в Ракете (Space Salmon)',
+        title: 'Кот в Ракете (Space Salmon • 2 кг)',
+        pet: 'cat',
+        petLabel: 'Для кошек',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Космический вкус: лосось',
+        flavorBadge: 'Space Salmon',
+        bgColor: 'Лаймовый верх + Темно-фиолетовый подвал',
+        description: 'Динамичная композиция с ракетой, рыбой-астронавтом, планетой из стейка лосося и 3 подписанными русскими иконками.',
+        shelfImpact: 96,
+        infographicClarity: 95,
+        cleanAirScore: 80,
+        mascotFocus: 91,
+        protein: '35%',
+        fat: '16%',
+        omega: '4.4%',
+        fiber: '2.4%',
+        iconsCount: '3 подписанные RU иконки'
+      },
+      {
+        id: 4,
+        file: 'Gemini_Generated_Image_58mjj758mjj758mj.jpg',
+        series: 'Космическая Ракета',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Пёс в Ракете (Space Lamb)',
+        title: 'Пёс в Ракете (Space Lamb • 2 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Космический вкус ягненка',
+        flavorBadge: 'Space Lamb',
+        bgColor: 'Лаймовый верх + Темно-фиолетовый подвал',
+        description: 'Динамика с ракетой и овечкой-астронавтом для собак, планетой с мясным окороком и 3 русскими пиктограммами пользы.',
+        shelfImpact: 96,
+        infographicClarity: 95,
+        cleanAirScore: 80,
+        mascotFocus: 91,
+        protein: '29%',
+        fat: '15%',
+        omega: '3.5%',
+        fiber: '3.1%',
+        iconsCount: '3 подписанные RU иконки'
+      },
+      {
+        id: 5,
+        file: 'Gemini_Generated_Image_v9blgv9blgv9blgv.jpg',
+        series: 'Космическая Ракета',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Кот в Ракете (Минимализм)',
+        title: 'Кот в Ракете (Минимализм • 2 кг)',
+        pet: 'cat',
+        petLabel: 'Для кошек',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Космический лосось',
+        flavorBadge: 'Лосось',
+        bgColor: 'Чистый лаймовый + Фиолетовый подвал',
+        description: 'Чистая минималистичная композиция с ракетой без мелких второстепенных деталей — фокус на силуэте ракеты и логотипе.',
+        shelfImpact: 91,
+        infographicClarity: 79,
+        cleanAirScore: 93,
+        mascotFocus: 90,
+        protein: '34%',
+        fat: '15%',
+        omega: '4.0%',
+        fiber: '2.5%',
+        iconsCount: '3 лаконичных символа'
+      },
+      {
+        id: 6,
+        file: 'Gemini_Generated_Image_1f0r5d1f0r5d1f0r.jpg',
+        series: 'Портрет в Скафандре',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Пёс в Иллюминаторе (Лайм 10 кг)',
+        title: 'Пёс в Иллюминаторе (Лайм • 10 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: 'Ягненок • 10 кг',
+        bgColor: 'Монолитный фисташково-лаймовый',
+        description: 'Крупный портрет подмигивающего пса в круглом фиолетовом скафандре-иллюминаторе на лаймовом фоне без нижней плашки.',
+        shelfImpact: 94,
+        infographicClarity: 88,
+        cleanAirScore: 90,
+        mascotFocus: 93,
+        protein: '27%',
+        fat: '14%',
+        omega: '3.1%',
+        fiber: '3.2%',
+        iconsCount: '4 иконки с подписями'
+      },
+      {
+        id: 7,
+        file: 'Gemini_Generated_Image_qs1fgmqs1fgmqs1f.jpg',
+        series: 'Фокус на Инфографику',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Кот в Скафандре (Белый Эко)',
+        title: 'Кот в Скафандре (Белый Эко • 2 кг)',
+        pet: 'cat',
+        petLabel: 'Для кошек',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Лосось Veterinary Line',
+        flavorBadge: 'Эко-Лосось',
+        bgColor: 'Чистый белый фон + Фиолетовый логотип',
+        description: 'Белый минималистичный фон с фиолетовым логотипом PET STAR, центральной линией из 5 крупных зеленых иконок и котом в шлеме.',
+        shelfImpact: 95,
+        infographicClarity: 99,
+        cleanAirScore: 97,
+        mascotFocus: 86,
+        protein: '36%',
+        fat: '14%',
+        omega: '4.5%',
+        fiber: '2.8%',
+        iconsCount: '5 крупных иконок по центру'
+      },
+      {
+        id: 8,
+        file: 'Gemini_Generated_Image_ng7nl6ng7nl6ng7n.jpg',
+        series: 'Фокус на Инфографику',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Пёс в Скафандре (Лайм Инфо)',
+        title: 'Пёс в Скафандре (Лайм Инфо • 2 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Ягненок Functional Line',
+        flavorBadge: 'Инфо-Ягненок',
+        bgColor: 'Фисташково-лаймовый фон + Белый логотип',
+        description: 'Лаймовый фон с центральной линией из 5 связанных пиктограмм инфографики и крупным портретом улыбающегося пса в скафандре.',
+        shelfImpact: 93,
+        infographicClarity: 98,
+        cleanAirScore: 92,
+        mascotFocus: 87,
+        protein: '30%',
+        fat: '14%',
+        omega: '3.6%',
+        fiber: '3.2%',
+        iconsCount: '5 крупных иконок по центру'
+      },
+      {
+        id: 9,
+        file: 'Gemini_Generated_Image_2jwg1p2jwg1p2jwg.jpg',
+        series: 'Макро-Маскот Монолит',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Кот Маскот Макро (Лайм 10 кг)',
+        title: 'Кот Маскот Макро (Лайм • 10 кг)',
+        pet: 'cat',
+        petLabel: 'Для кошек',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Лосось Макси-пак',
+        flavorBadge: 'Лосось • 10 кг',
+        bgColor: 'Монолитный лаймовый без нижней плашки',
+        description: 'Макро-портрет кота в зеленой маске с большими открытыми блестящими глазами на едином лаймовом фоне.',
+        shelfImpact: 97,
+        infographicClarity: 87,
+        cleanAirScore: 88,
+        mascotFocus: 98,
+        protein: '33%',
+        fat: '15%',
+        omega: '3.9%',
+        fiber: '2.7%',
+        iconsCount: '4 темные иконки внизу'
+      },
+      {
+        id: 10,
+        file: 'Gemini_Generated_Image_6w51rp6w51rp6w51.jpg',
+        series: 'Макро-Маскот Монолит',
+        isSplitBlock: false,
+        isNewWhite: false,
+        shortTitle: 'Кот Маскот Макро (Космос 10 кг)',
+        title: 'Кот Маскот Макро (Глубокий Космос • 10 кг)',
+        pet: 'cat',
+        petLabel: 'Для кошек',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Ночной космос • Лосось',
+        flavorBadge: 'Лосось • Космос',
+        bgColor: 'Темно-фиолетовый фон на всю пачку',
+        description: 'Темно-фиолетовый космический фон на всю пачку 10 кг и крупная мордочка кота в контрастной лаймовой маске.',
+        shelfImpact: 99,
+        infographicClarity: 90,
+        cleanAirScore: 89,
+        mascotFocus: 99,
+        protein: '35%',
+        fat: '16%',
+        omega: '4.3%',
+        fiber: '2.6%',
+        iconsCount: '4 белые иконки внизу'
+      },
+      {
+        id: 11,
+        file: 'Gemini_Generated_Image_fn7lg7fn7lg7fn7l.jpg',
+        series: 'Split Color-Block',
+        isSplitBlock: true,
+        isNewWhite: false,
+        shortTitle: 'Кот Макро (Белый + Сиреневый 10 кг)',
+        title: 'Кот Макро (Белый верх + Сиреневый блок • 10 кг)',
+        pet: 'cat',
+        petLabel: 'Для кошек',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Лосось Split-Block',
+        flavorBadge: 'Лосось • Белый/Сирень',
+        bgColor: 'Чистый белый верх + Сиреневый блок',
+        description: 'Двухцветный блок 10 кг: чистый белый верх, ярко-зеленый логотип PET STAR, крупная мордочка кота и сиреневый нижний блок.',
+        shelfImpact: 98,
+        infographicClarity: 95,
+        cleanAirScore: 97,
+        mascotFocus: 98,
+        protein: '35%',
+        fat: '15%',
+        omega: '4.2%',
+        fiber: '2.6%',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 12,
+        file: 'Gemini_Generated_Image_sfy4k6sfy4k6sfy4.jpg',
+        series: 'Split Color-Block',
+        isSplitBlock: true,
+        isNewWhite: false,
+        shortTitle: 'Пёс с Лапками (Кремовый Лайм 10 кг)',
+        title: 'Пёс с Лапками (Кремовый Лайм + Сиреневый блок • 10 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Ягненок (Пёс с лапками)',
+        flavorBadge: 'Ягненок • С лапками',
+        bgColor: 'Светло-сливочный лайм + Сиреневый блок',
+        description: 'Подмигивающий сиреневый пес положил две пухлые белые лапки прямо на границу сиреневого нижнего блока.',
+        shelfImpact: 99,
+        infographicClarity: 94,
+        cleanAirScore: 91,
+        mascotFocus: 100,
+        protein: '29%',
+        fat: '15%',
+        omega: '3.5%',
+        fiber: '3.1%',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 13,
+        file: 'Gemini_Generated_Image_er0494er0494er04.jpg',
+        series: 'Split Color-Block',
+        isSplitBlock: true,
+        isNewWhite: false,
+        shortTitle: 'Пёс Макро (Фисташковый + Зеленые искры 2 кг)',
+        title: 'Пёс Макро (Фисташковый + Зеленые искры • 2 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: 'Ягненок • Зеленые искры',
+        bgColor: 'Фисташково-лаймовый верх + Сиреневый блок',
+        description: 'Фасовка 2 кг в дизайне Split-Block: фисташково-лаймовый верх, россыпь зеленых звездочек по бокам и портрет пса.',
+        shelfImpact: 95,
+        infographicClarity: 93,
+        cleanAirScore: 88,
+        mascotFocus: 97,
+        protein: '29%',
+        fat: '15%',
+        omega: '3.4%',
+        fiber: '3.0%',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 14,
+        file: 'Gemini_Generated_Image_5cpva95cpva95cpv.jpg',
+        series: 'Split Color-Block',
+        isSplitBlock: true,
+        isNewWhite: false,
+        shortTitle: 'Пёс Подмигивающий (Фиолетовые звезды 10 кг)',
+        title: 'Пёс Подмигивающий (Белый + Фиолетовые звезды • 10 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: 'Ягненок • Фиолет звезды',
+        bgColor: 'Белый верх (Фиолетовые звезды) + Сиреневый блок',
+        description: 'Белый верх с зеленым логотипом PET STAR и контрастными темно-фиолетовыми звездочками вокруг ушей подмигивающего пса.',
+        shelfImpact: 97,
+        infographicClarity: 95,
+        cleanAirScore: 93,
+        mascotFocus: 98,
+        protein: '28%',
+        fat: '14%',
+        omega: '3.3%',
+        fiber: '3.2%',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 15,
+        file: 'Gemini_Generated_Image_op9r3xop9r3xop9r.jpg',
+        series: 'Split Color-Block',
+        isSplitBlock: true,
+        isNewWhite: false,
+        shortTitle: 'Пёс Подмигивающий (Зеленые звезды 10 кг)',
+        title: 'Пёс Подмигивающий (Белый + Зеленые звезды • 10 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: 'Ягненок • Зеленые звезды',
+        bgColor: 'Белый верх (Зеленые звезды) + Сиреневый блок',
+        description: 'Белый верх с зеленым логотипом и ярко-зелеными звездочками по краям пачки в тон шейного платка пса.',
+        shelfImpact: 97,
+        infographicClarity: 95,
+        cleanAirScore: 94,
+        mascotFocus: 98,
+        protein: '28%',
+        fat: '14%',
+        omega: '3.3%',
+        fiber: '3.2%',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 16,
+        file: 'Gemini_Generated_Image_65bdzo65bdzo65bd.jpg',
+        series: 'Split Color-Block',
+        isSplitBlock: true,
+        isNewWhite: false,
+        shortTitle: 'Пёс Подмигивающий (Белый Чистый 10 кг)',
+        title: 'Пёс Подмигивающий (Белый Ультра-Чистый • 10 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: 'Ягненок • Ультра-Чистый',
+        bgColor: 'Белый Ультра-Чистый верх + Сиреневый блок',
+        description: 'Максимальный воздух: белый верх полностью очищен от бокового паттерна звезд — оставлены только 3 искры у логотипа.',
+        shelfImpact: 96,
+        infographicClarity: 97,
+        cleanAirScore: 100,
+        mascotFocus: 99,
+        protein: '28%',
+        fat: '14%',
+        omega: '3.3%',
+        fiber: '3.2%',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 17,
+        file: 'Gemini_Generated_Image_fhnn1pfhnn1pfhnn.jpg',
+        series: 'Split Color-Block',
+        isSplitBlock: true,
+        isNewWhite: false,
+        shortTitle: 'Пёс Макро (Фисташковый Чистый 2 кг)',
+        title: 'Пёс Макро (Фисташковый Чистый + Белые искры • 2 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: 'Ягненок • Белые искры',
+        bgColor: 'Чистый фисташковый верх + Сиреневый блок',
+        description: 'Чистая версия фасовки 2 кг: фисташково-лаймовый верх без боковых точек и белый логотип с 3 белыми искрами.',
+        shelfImpact: 95,
+        infographicClarity: 96,
+        cleanAirScore: 98,
+        mascotFocus: 98,
+        protein: '29%',
+        fat: '15%',
+        omega: '3.4%',
+        fiber: '3.0%',
+        iconsCount: '4 белые иконки на сиреневом'
+      },
+      {
+        id: 18,
+        file: 'Gemini_Generated_Image_oluibeoluibeolui.jpg',
+        series: 'Белый Космос (Новинка)',
+        isSplitBlock: false,
+        isNewWhite: true,
+        shortTitle: 'Пёс на Космо-Сёрфе (Белый 10 кг)',
+        title: 'Пёс на Космо-Сёрфе (Белый фон • 10 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Космический ягненок',
+        flavorBadge: 'Ягненок • Сёрф 10 кг',
+        bgColor: 'Чистый белый фон + Фиолетовый логотип',
+        description: 'Динамичный белый концепт 10 кг: подмигивающий пес в прозрачном шлеме летит на лаймовом космо-сёрфе в окружении овечки-астронавта и мясной планеты.',
+        shelfImpact: 98,
+        infographicClarity: 92,
+        cleanAirScore: 95,
+        mascotFocus: 96,
+        protein: '29%',
+        fat: '15%',
+        omega: '3.5%',
+        fiber: '3.1%',
+        iconsCount: '4 иконки с подписями внизу'
+      },
+      {
+        id: 19,
+        file: 'Gemini_Generated_Image_qifvhqqifvhqqifv.jpg',
+        series: 'Белый Космос (Новинка)',
+        isSplitBlock: false,
+        isNewWhite: true,
+        shortTitle: 'Пёс в Иллюминаторе (Белый 10 кг)',
+        title: 'Пёс в Иллюминаторе (Белый фон • 10 кг)',
+        pet: 'dog',
+        petLabel: 'Для собак',
+        weight: '10kg',
+        weightLabel: '10 кг',
+        flavor: 'Фермерский ягненок',
+        flavorBadge: 'Ягненок • Белый 10 кг',
+        bgColor: 'Чистый белый фон + Фиолетовый логотип',
+        description: 'Белая версия концепта 10 кг с крупным портретом подмигивающего пса в круглом фиолетовом шлеме-иллюминаторе, овечкой-астронавтом и мясной планетой.',
+        shelfImpact: 97,
+        infographicClarity: 93,
+        cleanAirScore: 96,
+        mascotFocus: 98,
+        protein: '28%',
+        fat: '14%',
+        omega: '3.3%',
+        fiber: '3.2%',
+        iconsCount: '4 иконки с подписями внизу'
+      },
+      {
+        id: 20,
+        file: 'Gemini_Generated_Image_4clbw94clbw94clb.jpg',
+        series: 'Белый Космос (Новинка)',
+        isSplitBlock: false,
+        isNewWhite: true,
+        shortTitle: 'Кот в Скафандре + Рыбки (Белый 2 кг)',
+        title: 'Кот в Скафандре + Рыбки-Астронавты (Белый • 2 кг)',
+        pet: 'cat',
+        petLabel: 'Для кошек',
+        weight: '2kg',
+        weightLabel: '2 кг',
+        flavor: 'Космический вкус: лосось',
+        flavorBadge: 'Space Salmon • 2 кг',
+        bgColor: 'Чистый белый фон + Фиолетовый логотип',
+        description: 'Белый концепт 2 кг для кошек: фиолетовый логотип PET STAR, две рыбки в скафандрах, центральный пояс из 5 крупных иконок, планета из лосося и кот в прозрачном шлеме.',
+        shelfImpact: 98,
+        infographicClarity: 99,
+        cleanAirScore: 96,
+        mascotFocus: 92,
+        protein: '36%',
+        fat: '14%',
+        omega: '4.5%',
+        fiber: '2.8%',
+        iconsCount: '5 крупных иконок по центру'
+      }
+    ];
+
+    let state = {
+      leftId: 18,
+      rightId: 19,
+      sliderPos: 50,
+      activeFilter: 'all'
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initSelectors();
+      updateComparisonUI();
+      initDragComparison();
+      renderGallery();
+    });
+
+    function getDesignById(id) {
+      return designsData.find(d => d.id === Number(id)) || designsData[0];
+    }
+
+    function initSelectors() {
+      const selectLeft = document.getElementById('selectLeft');
+      const selectRight = document.getElementById('selectRight');
+
+      selectLeft.innerHTML = '';
+      selectRight.innerHTML = '';
+
+      designsData.forEach(d => {
+        const optL = document.createElement('option');
+        optL.value = d.id;
+        optL.textContent = `#${d.id} — ${d.shortTitle}`;
+        selectLeft.appendChild(optL);
+
+        const optR = document.createElement('option');
+        optR.value = d.id;
+        optR.textContent = `#${d.id} — ${d.shortTitle}`;
+        selectRight.appendChild(optR);
+      });
+    }
+
+    function onSelectChange(side, val) {
+      if (side === 'left') {
+        state.leftId = Number(val);
+      } else {
+        state.rightId = Number(val);
+      }
+      updateComparisonUI();
+      renderGallery();
+    }
+
+    function swapComparisonPair() {
+      const temp = state.leftId;
+      state.leftId = state.rightId;
+      state.rightId = temp;
+      updateComparisonUI();
+      renderGallery();
+    }
+
+    function updateSliderPosition(val) {
+      const clamped = Math.max(0, Math.min(100, Number(val)));
+      state.sliderPos = clamped;
+
+      const imgLeft = document.getElementById('imgLeft');
+      const divider = document.getElementById('sliderDivider');
+      const rangeInput = document.getElementById('compareRangeInput');
+      const percentText = document.getElementById('sliderPercentText');
+
+      imgLeft.style.clipPath = `inset(0 ${100 - clamped}% 0 0)`;
+      divider.style.left = `${clamped}%`;
+      rangeInput.value = clamped;
+      percentText.textContent = `${Math.round(clamped)}%`;
+    }
+
+    function initDragComparison() {
+      const stage = document.getElementById('compareStage');
+      let isDragging = false;
+
+      const calculatePercent = (clientX) => {
+        const rect = stage.getBoundingClientRect();
+        if (!rect.width) return;
+        const relX = clientX - rect.left;
+        const pct = (relX / rect.width) * 100;
+        updateSliderPosition(pct);
+      };
+
+      stage.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        calculatePercent(e.clientX);
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        calculatePercent(e.clientX);
+      });
+
+      window.addEventListener('pointerup', () => {
+        isDragging = false;
+      });
+
+      window.addEventListener('pointercancel', () => {
+        isDragging = false;
+      });
+    }
+
+    function updateComparisonUI() {
+      const dA = getDesignById(state.leftId);
+      const dB = getDesignById(state.rightId);
+
+      document.getElementById('selectLeft').value = dA.id;
+      document.getElementById('selectRight').value = dB.id;
+
+      document.getElementById('imgLeft').src = dA.file;
+      document.getElementById('imgRight').src = dB.file;
+
+      document.getElementById('stageLabelLeft').textContent = `#${dA.id} ${dA.shortTitle}`;
+      document.getElementById('stageLabelRight').textContent = `#${dB.id} ${dB.shortTitle}`;
+
+      document.getElementById('statTitleA').textContent = `#${dA.id} ${dA.shortTitle}`;
+      document.getElementById('statSubA').textContent = `${dA.flavorBadge} • ${dA.weightLabel}`;
+      document.getElementById('statTitleB').textContent = `#${dB.id} ${dB.shortTitle}`;
+      document.getElementById('statSubB').textContent = `${dB.flavorBadge} • ${dB.weightLabel}`;
+
+      const diffEl = document.getElementById('pairDiffSummary');
+      const pairKey = [dA.id, dB.id].sort((a, b) => a - b).join('-');
+      const customPairNotes = {
+        '18-19': 'Сравнение новых белых концептов 10 кг: в #18 пес летит в полный рост на лаймовом космо-сёрфе в прозрачном шлеме, а в #19 сделан фокус на крупном портрете головы в круглом иллюминаторе.',
+        '6-19': 'A/B тест цвета фона для портрета в иллюминаторе 10 кг: #6 выполнен на фисташково-лаймовом фоне с белым логотипом, а #19 — на чистом белом фоне с контрастным фиолетовым логотипом.',
+        '7-20': 'Эволюция белого эко-дизайна 2 кг для кошек: в #20 добавлены рыбки-астронавты, планета из лосося, крупная русская фасовка «2 кг» и сиреневый окрас кота.',
+        '12-15': 'Тест деталей маскота: в #12 пес держит белые лапки прямо на границе сиреневого блока на сливочно-лаймовом фоне, а в #15 — классический портрет без лапок на чисто белом фоне.',
+        '11-14': 'Парная линейка 10 кг на белом фоне с сиреневым подвалом: #11 (Кот в зеленой маске) и #14 (Подмигивающий пес).',
+        '14-15': 'A/B сравнение паттерна звезд на белом фоне: в #14 звездочки темно-фиолетовые (под контур ушей), а в #15 — ярко-зеленые (под цвет логотипа).',
+        '15-16': 'Тест «воздуха» на белом фоне 10 кг: #15 содержит россыпь зеленых звезд по бокам, а #16 оставляет только 3 искры около логотипа.',
+        '13-17': 'A/B тест фасовки 2 кг для собак: в #13 по фисташковому фону рассыпаны зеленые звездочки, а в #17 боковой фон чистый.',
+        '10-11': 'Эволюция макро-маскота кошки 10 кг: #10 полностью залит ночным темно-фиолетовым цветом, а #11 открывает белый верх с сиреневым подвалом.',
+        '3-4': 'Единая модульная композиция с ракетой: меняется маскот (Кот vs Пёс) и вкусовая планета (Лосось vs Ягненок).',
+        '1-2': 'Парная серия «Супергерой в полный рост»: #1 (Пёс и космо-овечки) против #2 (Кот и космо-рыбки).'
+      };
+
+      if (dA.id === dB.id) {
+        diffEl.textContent = 'Выбран один и тот же дизайн слева и справа. Выберите другой концепт в верхнем списке для сравнения.';
+      } else if (customPairNotes[pairKey]) {
+        diffEl.textContent = customPairNotes[pairKey];
+      } else {
+        diffEl.textContent = `Сравнение: #${dA.id} (${dA.bgColor}) против #${dB.id} (${dB.bgColor}). Фасовка: ${dA.weightLabel} vs ${dB.weightLabel}.`;
+      }
+
+      const metrics = [
+        { label: 'Заметность на полке и маркетплейсе (CTR)', valA: dA.shelfImpact, valB: dB.shelfImpact },
+        { label: 'Читаемость инфографики и УТП', valA: dA.infographicClarity, valB: dB.infographicClarity },
+        { label: 'Чистота композиции и «воздух»', valA: dA.cleanAirScore, valB: dB.cleanAirScore },
+        { label: 'Акцент на маскоте и зрительный контакт', valA: dA.mascotFocus, valB: dB.mascotFocus }
+      ];
+
+      document.getElementById('designMetricsContainer').innerHTML = metrics.map(m => `
+        <div class="space-y-1">
+          <div class="flex items-center justify-between gap-1 text-[11px] sm:text-xs font-extrabold text-spacePurple-dark">
+            <span class="truncate">${m.label}</span>
+            <span class="flex items-center gap-1 shrink-0">
+              <span class="px-1.5 py-0.5 rounded bg-limePack text-spacePurple-dark border border-spacePurple-dark/40">А: ${m.valA}%</span>
+              <span class="px-1.5 py-0.5 rounded bg-spacePurple text-white">Б: ${m.valB}%</span>
+            </span>
+          </div>
+          <div class="grid grid-cols-2 gap-1.5 h-2.5">
+            <div class="bg-milkWhite rounded-full overflow-hidden border border-spacePurple-dark p-0.5">
+              <div class="h-full bg-limePack-vibrant rounded-full transition-all duration-500" style="width: ${m.valA}%"></div>
+            </div>
+            <div class="bg-milkWhite rounded-full overflow-hidden border border-spacePurple-dark p-0.5">
+              <div class="h-full bg-spacePurple rounded-full transition-all duration-500" style="width: ${m.valB}%"></div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      const rows = [
+        { name: 'Целевой питомец', a: dA.petLabel, b: dB.petLabel },
+        { name: 'Фасовка пачки', a: dA.weightLabel, b: dB.weightLabel },
+        { name: 'Основной вкус', a: dA.flavor, b: dB.flavor },
+        { name: 'Белки / Жиры', a: `${dA.protein} / ${dA.fat}`, b: `${dB.protein} / ${dB.fat}` },
+        { name: 'Омега-3/6 и Клетчатка', a: `${dA.omega} / ${dA.fiber}`, b: `${dB.omega} / ${dB.fiber}` },
+        { name: 'Инфо-иконки', a: dA.iconsCount, b: dB.iconsCount }
+      ];
+
+      document.getElementById('nutritionComparisonRows').innerHTML = rows.map(r => `
+        <div class="grid grid-cols-12 items-center py-1 border-b border-spacePurple-dark/10 last:border-none gap-1.5">
+          <div class="col-span-4 font-bold text-spacePurple text-[11px] leading-tight">${r.name}</div>
+          <div class="col-span-4 font-display font-extrabold text-spacePurple-dark bg-limePack/35 px-1.5 py-1 rounded-lg text-center text-[11px] truncate" title="${r.a}">${r.a}</div>
+          <div class="col-span-4 font-display font-extrabold text-spacePurple-dark bg-spacePurple/15 px-1.5 py-1 rounded-lg text-center text-[11px] truncate" title="${r.b}">${r.b}</div>
+        </div>
+      `).join('');
+    }
+
+    function filterGallery(filterKey, btnEl) {
+      state.activeFilter = filterKey;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('bg-spacePurple', 'text-white', 'shadow-cartoon-sm');
+        b.classList.add('bg-white', 'text-spacePurple-dark');
+      });
+      if (btnEl) {
+        btnEl.classList.remove('bg-white', 'text-spacePurple-dark');
+        btnEl.classList.add('bg-spacePurple', 'text-white', 'shadow-cartoon-sm');
+      }
+      renderGallery();
+    }
+
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      const filtered = designsData.filter(d => {
+        if (state.activeFilter === 'all') return true;
+        if (state.activeFilter === 'newWhite') return d.isNewWhite === true;
+        if (state.activeFilter === 'split') return d.isSplitBlock === true;
+        if (state.activeFilter === 'dog' || state.activeFilter === 'cat') return d.pet === state.activeFilter;
+        if (state.activeFilter === '2kg' || state.activeFilter === '10kg') return d.weight === state.activeFilter;
+        return true;
+      });
+
+      grid.innerHTML = filtered.map(d => {
+        const isLeft = d.id === state.leftId;
+        const isRight = d.id === state.rightId;
+        return `
+          <div class="bg-white rounded-3xl border-2 border-spacePurple-dark shadow-cartoon flex flex-col justify-between overflow-hidden">
+            <!-- Large Square/Vertical Image Container so the packaging fills the card -->
+            <div onclick="openDesignModal(${d.id})" class="stage-media cursor-pointer relative aspect-[1/1] bg-[#EFEFE9] overflow-hidden border-b-2 border-spacePurple-dark group">
+              <img src="${d.file}" alt="${d.title}" loading="lazy" class="group-hover:scale-105 transition-transform duration-300" />
+              <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-spacePurple-dark text-starYellow font-display font-black text-xs">
+                  #${d.id}
+                </span>
+                <span class="px-2.5 py-0.5 rounded-full bg-white/95 border border-spacePurple-dark text-spacePurple-dark font-extrabold text-xs">
+                  ${d.weightLabel}
+                </span>
+                ${d.isNewWhite ? '<span class="px-2 py-0.5 rounded-full bg-limePack text-spacePurple-dark border border-spacePurple-dark font-extrabold text-[10px] uppercase">NEW</span>' : ''}
+              </div>
+            </div>
+
+            <!-- Minimal Footer with Title & Quick Compare Buttons -->
+            <div class="p-3.5 flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <div class="text-[10px] font-bold uppercase text-spacePurple truncate">${d.petLabel} • ${d.flavorBadge}</div>
+                <h3 onclick="openDesignModal(${d.id})" class="cursor-pointer font-display font-black text-sm sm:text-base text-spacePurple-dark truncate">
+                  ${d.shortTitle}
+                </h3>
+              </div>
+
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button onclick="sendToCompare(${d.id}, 'left')" title="Отправить влево (Образец А)" class="px-2.5 py-1.5 rounded-xl font-display font-black text-xs border-2 border-spacePurple-dark transition-all ${isLeft ? 'bg-limePack text-spacePurple-dark shadow-cartoon-sm' : 'bg-limePack/25 hover:bg-limePack text-spacePurple-dark'}">
+                  А
+                </button>
+                <button onclick="sendToCompare(${d.id}, 'right')" title="Отправить вправо (Образец Б)" class="px-2.5 py-1.5 rounded-xl font-display font-black text-xs border-2 border-spacePurple-dark transition-all ${isRight ? 'bg-spacePurple text-white shadow-cartoon-sm' : 'bg-spacePurple/15 hover:bg-spacePurple hover:text-white text-spacePurple-dark'}">
+                  Б
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function sendToCompare(id, side) {
+      onSelectChange(side, id);
+      document.getElementById('section-compare').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openDesignModal(id) {
+      const d = getDesignById(id);
+      document.getElementById('modalIdBadge').textContent = `#${d.id}`;
+      document.getElementById('modalTitle').textContent = d.title;
+      document.getElementById('modalImg').src = d.file;
+      document.getElementById('modalDesc').textContent = d.description;
+
+      document.getElementById('modalSendLeftBtn').onclick = () => {
+        closeDesignModal();
+        sendToCompare(d.id, 'left');
+      };
+      document.getElementById('modalSendRightBtn').onclick = () => {
+        closeDesignModal();
+        sendToCompare(d.id, 'right');
+      };
+
+      document.getElementById('designModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDesignModal() {
+      document.getElementById('designModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function handleModalBackdropClick(e) {
+      if (e.target.id === 'designModal') {
+        closeDesignModal();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDesignModal();
+    });
+  </script>
+</body>
+</html>
